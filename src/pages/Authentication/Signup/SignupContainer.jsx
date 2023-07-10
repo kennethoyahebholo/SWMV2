@@ -6,14 +6,17 @@ import { SIGNUP_SUCCESS } from "../../../routes/CONSTANTS";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 export const SignupContainer = () => {
   const Navigate = useNavigate();
+  const [phoneNumber, setPhoneNumber] = useState("");
   const formik = useFormik({
     initialValues: {
       // firstName: "",
       // lastName: "",
       email: "",
+      phone: "",
       password: "",
       confirmPassword: "",
     },
@@ -23,6 +26,9 @@ export const SignupContainer = () => {
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
+      phone: Yup.string()
+        .required("Phone number is required")
+        .matches(/^\+?(?:\d){10,14}$/, "Invalid phone number"),
       password: Yup.string()
         .required("Password is required")
         .matches(
@@ -35,18 +41,24 @@ export const SignupContainer = () => {
     }),
     onSubmit: (details) => {
       console.log(details);
+      console.log("+", `234${parseInt(details?.phone, 10)}`);
       toast.success("Account Created Successfully");
       Navigate(SIGNUP_SUCCESS);
     },
   });
 
+  const handlePhoneInputChange = (value) => {
+    setPhoneNumber(value);
+    formik.setFieldValue("phone", value);
+  };
+
   return (
-    <Auth
-      message="Join our Volunteer Team and Make a Difference in Your Community"
-      google_message="Join With Google"
-      linkedIn_message="Join With Linkedin"
-    >
-      <SignupView formik={formik} loading={false} />
+    <Auth message="Join our Smart Waste Management Vision and Make a Difference in Your Community">
+      <SignupView
+        formik={formik}
+        loading={false}
+        handlePhoneInputChange={handlePhoneInputChange}
+      />
     </Auth>
   );
 };

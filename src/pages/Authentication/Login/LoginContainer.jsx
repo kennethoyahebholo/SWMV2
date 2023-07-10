@@ -12,13 +12,19 @@ export const LoginContainer = () => {
   const Navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      email: "",
+      email_phone: "",
       password: "",
     },
     validationSchema: Yup.object().shape({
-      email: Yup.string()
-        .email("Invalid email address")
-        .required("Email is required"),
+      // email: Yup.string()
+      //   .email("Invalid email address")
+      //   .required("Email is required"),
+      email_phone: Yup.string()
+        .required("Field is required")
+        .matches(
+          /^(?:\+?\d{10,14}|[\w\.-]+@[\w\.-]+\.\w{2,4})$/,
+          "Invalid field value"
+        ),
       password: Yup.string()
         .required("Password is required")
         .matches(
@@ -37,11 +43,7 @@ export const LoginContainer = () => {
   });
 
   return (
-    <Auth
-      message="Welcome Back"
-      google_message="Continue With Google"
-      linkedIn_message="Continue With Linkedin"
-    >
+    <Auth message="Welcome Back">
       <LoginView formik={formik} />
     </Auth>
   );

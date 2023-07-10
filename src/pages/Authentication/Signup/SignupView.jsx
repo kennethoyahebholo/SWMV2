@@ -7,7 +7,7 @@ import { Icon } from "react-icons-kit";
 import { arrows_exclamation } from "react-icons-kit/linea/arrows_exclamation";
 import { arrows_circle_check } from "react-icons-kit/linea/arrows_circle_check";
 
-const SignupView = ({ loading, formik }) => {
+const SignupView = ({ loading, formik, handlePhoneInputChange }) => {
   const lowerValidated = useRef(false);
   const lengthValidated = useRef(false);
   const upperValidated = useRef(false);
@@ -116,6 +116,21 @@ const SignupView = ({ loading, formik }) => {
             touched={formik.touched.email}
             className="w-full"
             label="Email"
+          />
+        </div>
+        <div>
+          <FormInput
+            size="lg"
+            type="tel"
+            id="phone"
+            name="phone"
+            value={formik.values.phone}
+            // placeholder="Enter phone address"
+            onChange={handlePhoneInputChange}
+            errors={formik.errors.phone}
+            touched={formik.touched.phone}
+            // className="w-full"
+            label="Phone"
           />
         </div>
         <div>

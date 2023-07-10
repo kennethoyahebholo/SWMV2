@@ -22,9 +22,14 @@ const Auth = ({ children, message }) => {
       <Navbar auth={isAuth} />
       {message && (
         <div
-          className={`${pathname === "/" ? "pt-0" : "pt-0"} pt-14 pb-28 px-9`}
+          className={`${
+            pathname === "/" ? "pt-0" : "pt-0"
+          } pt-14 pb-28 px-3 md:px-9`}
         >
-          <div className="flex items-center bg-white py-14 px-6 rounded-[14px] shadow-md">
+          <h4 className="text-center font-['Spectral'] text-[28px] lg:text-[56px] text-[#628c23] font-[600] max-w-[1300px] m-auto mb-16">
+            {message}
+          </h4>
+          <div className="flex items-center bg-transparent md:bg-white py-14 px-1 md:px-6 rounded-[14px] md:shadow-md">
             {children}
           </div>
         </div>

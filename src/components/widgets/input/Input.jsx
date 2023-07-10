@@ -5,6 +5,8 @@ import { eye } from "react-icons-kit/oct/eye";
 import PhoneInput from "react-phone-input-2";
 import { VMSimages } from "../../../assets";
 
+import "./styles.css";
+
 const Input = ({
   end,
   size = "md",
@@ -26,7 +28,7 @@ const Input = ({
       case "md":
         return "px-4 h-12";
       case "lg":
-        return "px-8 h-16";
+        return "px-3 h-16";
 
       default:
         return "p-1 h-10";
@@ -91,40 +93,13 @@ const Input = ({
   if (props.type === "tel") {
     return (
       <div className="relative w-full">
-        <img
-          className={`${
-            size === "sm" && "max-w-[3px] top-2 left-4"
-          } object-contain absolute top-3 left-6`}
-          //   src={VMSimages.input_bar}
-          alt=""
-        />
         <PhoneInput
           {...register}
-          country={"gb"}
-          preferredCountries={["us", "ng", "gb", "ke"]}
-          onChange={(_, __, e) => props.onChange(e)}
-          containerClass={`${className} w-full flex items-center border rounded-[6px]`}
-          containerStyle={{ width: "100%" }}
-          inputStyle={{
-            width: "100%",
-            height: "64px",
-            paddingLeft: "72px",
-            border: "none",
-          }}
-          buttonStyle={{
-            top: "25%",
-            height: "50%",
-            padding: "0 8px 0 16px",
-            backgroundColor: "#ffffff",
-            border: "none",
-            borderRadius: "6px 0 0 6px",
-            borderRight: "1px solid #8E8E93",
-          }}
-          inputProps={{
-            id: props.id,
-            name: props.name,
-            placeholder: props.placeholder,
-          }}
+          country={"ng"}
+          name={props.name}
+          value={props.value}
+          onChange={props.onChange}
+          containerClass={`${className} react-tel-input`}
         />
       </div>
     );

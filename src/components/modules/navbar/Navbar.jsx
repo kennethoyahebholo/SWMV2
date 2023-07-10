@@ -33,7 +33,7 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
         </Link>
 
         <div className="hidden lg:inline-flex items-center space-x-20">
-          <NavLink to="/">Support</NavLink>
+          <NavLink to={SERVICES}>Services</NavLink>
           <NavLink to="/">Help</NavLink>
           <div className="flex items-center space-x-10">
             {auth ? (
