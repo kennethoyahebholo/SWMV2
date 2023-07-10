@@ -50,7 +50,7 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
                 {showAuthComp && (
                   <div className="absolute bg-slate-200 right-0 top-16">
                     <div className="p-3 lg:p-3 space-y-4 z-50 w-[15rem]">
-                      <NavLink to={LOGIN}>
+                      <NavLink to="#">
                         <div className="bg-green-700 py-2 px-[20px] lg:px-[50px] rounded-full flex items-center justify-center">
                           <h6 className="font-bold text-white text-[12px] lg:text-[14px] ">
                             View Profile
