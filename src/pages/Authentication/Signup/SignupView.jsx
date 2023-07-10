@@ -75,7 +75,7 @@ const SignupView = ({ loading, formik }) => {
   return (
     <div className="w-full m-auto max-w-[1000px]">
       <form onSubmit={formik.handleSubmit} className="space-y-8">
-        <div>
+        {/* <div>
           <FormInput
             size="lg"
             type="text"
@@ -88,8 +88,8 @@ const SignupView = ({ loading, formik }) => {
             className="w-full"
             label="First Name"
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <FormInput
             size="lg"
             type="text"
@@ -102,7 +102,7 @@ const SignupView = ({ loading, formik }) => {
             className="w-full"
             label="Last Name"
           />
-        </div>
+        </div> */}
         <div>
           <FormInput
             size="lg"

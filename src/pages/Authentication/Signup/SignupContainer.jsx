@@ -11,15 +11,15 @@ export const SignupContainer = () => {
   const Navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      // firstName: "",
+      // lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
     },
     validationSchema: Yup.object().shape({
-      firstName: Yup.string().required("Please enter your first name."),
-      lastName: Yup.string().required("Please enter your Last name."),
+      // firstName: Yup.string().required("Please enter your first name."),
+      // lastName: Yup.string().required("Please enter your Last name."),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
