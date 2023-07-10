@@ -4,9 +4,9 @@ import {
   ErrorPage,
   Home,
   Services,
-  //   Login,
-  //   Signup,
-  //   AccoutSuccessfullyCreated,
+  Login,
+  Signup,
+  AccoutSuccessfullyCreated,
   //   ForgotPassword,
   //   Settings,
   //   LogOut,
@@ -18,11 +18,11 @@ import {
   //   FORGOT_PASSWORD,
   HOME,
   SERVICES,
-  //   LOGIN,
+  LOGIN,
   //   SETTINGS,
-  //   SIGNUP,
+  SIGNUP,
   //   LOGOUT,
-  //   SIGNUP_SUCCESS,
+  SIGNUP_SUCCESS,
   //   RESET_PASSWORD,
   //   HELP_CENTER,
   //   CUSTOMER_SUPPORT,
@@ -42,12 +42,12 @@ const RouterConfig = () => {
         {/* <Route path={CUSTOMER_SUPPORT} element={<CustomerSupport />} /> */}
         <Route path="/" element={<PublicRoute />}>
           {/* Auth pages */}
-          {/* <Route path={LOGIN} element={<Login />} /> */}
-          {/* <Route path={SIGNUP} element={<Signup />} /> */}
-          {/* <Route
+          <Route path={LOGIN} element={<Login />} />
+          <Route path={SIGNUP} element={<Signup />} />
+          <Route
             path={SIGNUP_SUCCESS}
             element={<AccoutSuccessfullyCreated />}
-          /> */}
+          />
           {/* <Route path={FORGOT_PASSWORD} element={<ForgotPassword />} /> */}
           {/* <Route path={RESET_PASSWORD} element={<ResetPassword />} /> */}
         </Route>

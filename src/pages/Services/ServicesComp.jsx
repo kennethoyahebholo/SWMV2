@@ -4,7 +4,7 @@ import { Button } from "../../components";
 
 import "./animationStyle.css";
 
-const ServicesComp = ({ ...data }) => {
+const ServicesComp = ({ data, setOpenModal, openModal, isAuth }) => {
   const [showHiddenContent, setShowHiddenContent] = useState(false);
 
   return (
@@ -25,6 +25,14 @@ const ServicesComp = ({ ...data }) => {
             variant="full"
             size="sm"
             className="text-[12px] w-[80%] font-bold"
+            onClick={() => {
+              if (isAuth) {
+                alert("Next step");
+              } else {
+                setShowHiddenContent(false);
+                setOpenModal(!openModal);
+              }
+            }}
           >
             Proceed
           </Button>
