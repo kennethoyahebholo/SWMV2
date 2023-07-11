@@ -41,13 +41,6 @@ export const LoginContainer = () => {
     }),
     onSubmit: (details) => {
       setIsLoading(true);
-      console.log(details);
-      // localStorage.setItem("userData", details.email);
-      // setTimeout(() => {
-      //   setIsLoading(false);
-      //   toast.success("Successfully Logged In");
-      //   navigate(SERVICES);
-      // }, 3000);
       void dispatch(login(details))
         .unwrap()
         .then((resp) => {
@@ -62,13 +55,6 @@ export const LoginContainer = () => {
           } else if (resp?.status === 200 || resp?.status === 201) {
             toast.success("login successfully, navigating to services");
             navigate(SERVICES);
-            // if (userRole === "customer") {
-            //   navigate(HOME);
-            //   // window.location.reload();
-            // } else {
-            //   navigate(DASHBOARD);
-            //   // window.location.reload();
-            // }
           }
           setIsLoading(false);
         })

@@ -8,6 +8,8 @@ import {
   Signup,
   AccoutSuccessfullyCreated,
   Profile,
+  WasteDisposal,
+  WasteRecycling,
 } from "../pages";
 import {
   HOME,
@@ -16,9 +18,10 @@ import {
   LOGIN,
   SIGNUP,
   SIGNUP_SUCCESS,
+  WASTE_DISPOSAL,
+  WASTE_RECYCLING,
 } from "./CONSTANTS";
 
-// import { ProtectedRoute, PublicRoute } from "../components";
 import AuthGaurd from "../authGaurd";
 
 const RouterConfig = () => {
@@ -28,6 +31,8 @@ const RouterConfig = () => {
         {/* Public routes should be placed in here */}
         <Route path={HOME} element={<Home />} />
         <Route path={SERVICES} element={<Services />} />
+        <Route path={WASTE_DISPOSAL} element={<WasteDisposal />} />
+        <Route path={WASTE_RECYCLING} element={<WasteRecycling />} />
         <Route path={PROFILE} element={<Profile />} />
         <Route path={LOGIN} element={<Login />} />
         <Route path={SIGNUP} element={<Signup />} />

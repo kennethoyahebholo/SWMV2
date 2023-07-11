@@ -7,6 +7,8 @@ import NavLink from "./NavLink";
 import { MdPerson } from "react-icons/md";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../redux/slices/auth.slice";
 
 const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
   const { pathname } = useLocation();
@@ -14,7 +16,23 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
   const handleShowAuthComp = () => {
     setShowAuthComp(!showAuthComp);
   };
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    void dispatch(logout())
+      .unwrap()
+      .then((resp) => {
+        console.log(resp);
+        if (resp?.status === 200 || resp?.status === 201) {
+          toast.success("login successfully, navigating to services");
+          navigate(SERVICES);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="bg-gray-100 sticky top-0 left-0 right-0 text-white z-50">
       <div className="relative w-full h-[90px]  px-2 md:px-5 xl:px-5 py-4 flex items-center justify-between z-50">

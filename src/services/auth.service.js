@@ -40,14 +40,9 @@ export const Register = async (details) => {
 };
 
 export const Logout = async () => {
-  return await axios
-    .get(`${env.API_BASE_URL}/${LOG_OUT}`, {
-      headers: authHeader(),
-    })
-    .finally(() => {
-      localStorage.removeItem(SWM_USER_DATA);
-      window.location.reload();
-    });
+  return await axios.get(`${env.API_BASE_URL}/${LOG_OUT}`).finally(() => {
+    localStorage.removeItem(SWM_USER_DATA);
+  });
 };
 
 export const ForgotPassword = async (details) => {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SWMimages } from "../../assets";
 import { Button } from "../../components";
 
@@ -6,6 +7,7 @@ import "./animationStyle.css";
 
 const ServicesComp = ({ data, setOpenModal, openModal, isAuth }) => {
   const [showHiddenContent, setShowHiddenContent] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div
@@ -27,7 +29,7 @@ const ServicesComp = ({ data, setOpenModal, openModal, isAuth }) => {
             className="text-[12px] w-[80%] font-bold"
             onClick={() => {
               if (isAuth) {
-                alert("Next step");
+                navigate(data?.link);
               } else {
                 setShowHiddenContent(false);
                 setOpenModal(!openModal);

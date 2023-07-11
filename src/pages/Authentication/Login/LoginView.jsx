@@ -41,6 +41,7 @@ const LoginView = ({ isLoading, formik }) => {
             variant="full"
             size="lg"
             className="text-[12px]"
+            disabled={isLoading}
           >
             {isLoading ? <Loader /> : "Log In"}
           </Button>

@@ -1,4 +1,5 @@
 import { SWMimages } from "../assets";
+import { WASTE_DISPOSAL, WASTE_RECYCLING } from "../routes/CONSTANTS";
 
 export const ServiceDetails = [
   {
@@ -6,6 +7,7 @@ export const ServiceDetails = [
     name: "Waste Disposal",
     icon: SWMimages.waste_in_icon,
     title: "Schedule Disposal",
+    link: WASTE_DISPOSAL,
     subText:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae expedita eligendi ducimus nisi praesentium itaque.",
   },
@@ -14,6 +16,7 @@ export const ServiceDetails = [
     name: "Waste Recycling",
     icon: SWMimages.white_man,
     title: "Schedule Recycling",
+    link: WASTE_RECYCLING,
     subText:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae expedita eligendi ducimus nisi praesentium itaque.",
   },
@@ -22,6 +25,7 @@ export const ServiceDetails = [
     name: "Wallet",
     icon: SWMimages.wallet_icon,
     title: "View Balance & Rewards",
+    link: WASTE_DISPOSAL,
     subText:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae expedita eligendi ducimus nisi praesentium itaque.",
   },
@@ -30,6 +34,7 @@ export const ServiceDetails = [
     name: "Schedule History",
     icon: SWMimages.calendar_icon,
     title: "View History",
+    link: WASTE_DISPOSAL,
     subText:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae expedita eligendi ducimus nisi praesentium itaque.",
   },

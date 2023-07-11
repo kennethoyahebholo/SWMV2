@@ -231,6 +231,7 @@ const SignupView = ({ isLoading, formik, handlePhoneInputChange }) => {
             variant="full"
             size="lg"
             className="text-[12px]"
+            disabled={isLoading}
           >
             {isLoading ? <Loader /> : "Sign up"}
           </Button>
