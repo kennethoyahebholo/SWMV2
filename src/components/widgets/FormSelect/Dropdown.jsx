@@ -37,6 +37,9 @@ const Dropdown = ({
     option: (styles) => {
       return { ...styles, color: "#8692A6]" };
     },
+    input: (styles) => {
+      return { ...styles, height: "3rem" };
+    },
     placeholder: (provided) => ({
       ...provided,
       fontWeight: "600",
@@ -98,25 +101,13 @@ const Dropdown = ({
   const customPlaceholder = () => <span className=""></span>;
 
   return (
-    // <Select
-    //   className={`${className} text-base bg-white placeholder:text-[#8692A6]`}
-    //   {...props}
-    //   options={options}
-    //   isMulti={isMulti}
-    //   onChange={handleChange}
-    //   styles={colorStyles}
-    //   components={{ Input: customInput, Placeholder: customPlaceholder }}
-    // />
     <Select
       className={`${className} text-base bg-white placeholder:text-[#8692A6]`}
       {...props}
       name="dropdownValue"
       options={options}
-      // components={{ Input: customInput, Placeholder: customPlaceholder }}
-      // value={options.find((option) => option.value === values.dropdownValue)}
+      styles={colorStyles}
       onChange={handleChange}
-
-      // onBlur={handleBlur("dropdownValue")}
     />
   );
 };

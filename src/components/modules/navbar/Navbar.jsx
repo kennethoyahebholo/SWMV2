@@ -57,7 +57,7 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
                           </div>
                         </NavLink>
                       )}
-                      <NavLink to="#" className="inline-flex">
+                      <NavLink to={LOGIN} className="inline-flex">
                         <div
                           onClick={() => {
                             toast.success("User logged out successfully");

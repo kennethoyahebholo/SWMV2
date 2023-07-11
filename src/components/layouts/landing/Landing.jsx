@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { SWM_USER_DATA } from "../../../services/CONSTANTS";
 
 import { Navbar } from "../../modules";
 
 const Landing = ({ children, customStyle }) => {
   const { pathname } = useLocation();
-  const data = localStorage.getItem("userData");
+  const data = localStorage.getItem(SWM_USER_DATA);
   const [isAuth, setIsAuth] = useState(true);
 
   const getActiveUser = useCallback(() => {

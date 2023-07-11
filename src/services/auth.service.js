@@ -12,23 +12,23 @@ import {
 } from "./CONSTANTS";
 
 export const Signin = async ({ email, password }) => {
-  const headers = {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Credentials": true,
-  };
-  const configs = {
-    headers,
-    withCredentials: true,
-  };
+  // const headers = {
+  //   Accept: "application/json",
+  //   "Content-Type": "application/json",
+  //   "Access-Control-Allow-Credentials": true,
+  // };
+  // const configs = {
+  //   headers,
+  //   withCredentials: true,
+  // };
   return await axios
     .post(
       `${env.API_BASE_URL}/${LOGIN}`,
       {
         email,
         password,
-      },
-      configs
+      }
+      // configs
     )
     .then((res) => {
       const data = res.data;

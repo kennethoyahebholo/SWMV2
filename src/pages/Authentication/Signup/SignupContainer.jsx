@@ -73,6 +73,10 @@ export const SignupContainer = () => {
             navigate(SIGNUP_SUCCESS);
             return;
           }
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          console.log(err);
         });
     },
   });

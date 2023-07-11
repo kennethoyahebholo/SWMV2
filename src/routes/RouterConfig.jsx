@@ -18,44 +18,23 @@ import {
   SIGNUP_SUCCESS,
 } from "./CONSTANTS";
 
-import { ProtectedRoute, PublicRoute } from "../components";
+// import { ProtectedRoute, PublicRoute } from "../components";
+import AuthGaurd from "../authGaurd";
 
 const RouterConfig = () => {
   return (
-    <div>
+    <AuthGaurd>
       <Routes>
         {/* Public routes should be placed in here */}
         <Route path={HOME} element={<Home />} />
         <Route path={SERVICES} element={<Services />} />
         <Route path={PROFILE} element={<Profile />} />
-
-        {/* <Route path={HELP_CENTER} element={<HelpCenter />} /> */}
-        {/* <Route path={CUSTOMER_SUPPORT} element={<CustomerSupport />} /> */}
-        <Route path="/" element={<PublicRoute />}>
-          {/* Auth pages */}
-          <Route path={LOGIN} element={<Login />} />
-          <Route path={SIGNUP} element={<Signup />} />
-          <Route
-            path={SIGNUP_SUCCESS}
-            element={<AccoutSuccessfullyCreated />}
-          />
-          {/* <Route path={FORGOT_PASSWORD} element={<ForgotPassword />} /> */}
-          {/* <Route path={RESET_PASSWORD} element={<ResetPassword />} /> */}
-        </Route>
-        {/* dashboard routes should be placed in here */}
-        <Route>
-          {/* <Route path={SETTINGS} element={<Settings />} /> */}
-          {/* <Route path={LOGOUT} element={<LogOut />} /> */}
-        </Route>
-
-        {/* <Route path="/" element={<ProtectedRoute navigate={SIGNUP} />}>
-          Protected routes should be placed in here
-        </Route> */}
-
-        {/* 404 page */}
+        <Route path={LOGIN} element={<Login />} />
+        <Route path={SIGNUP} element={<Signup />} />
+        <Route path={SIGNUP_SUCCESS} element={<AccoutSuccessfullyCreated />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-    </div>
+    </AuthGaurd>
   );
 };
 

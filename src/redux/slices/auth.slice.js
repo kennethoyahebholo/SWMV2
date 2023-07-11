@@ -18,7 +18,6 @@ export const register = createAsyncThunk(
       });
       return resp;
     } catch (error) {
-      console.log(error, "error");
       const message = formatErrorResponse(error);
       toast.error(error.message);
       return thunkAPI.rejectWithValue(message);

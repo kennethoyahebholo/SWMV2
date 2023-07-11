@@ -11,12 +11,12 @@ const LoginView = ({ isLoading, formik }) => {
           <FormInput
             size="lg"
             type="text"
-            id="email_phone"
-            name="email_phone"
-            value={formik.values.email_phone}
+            id="email"
+            name="email"
+            value={formik.values.email}
             onChange={formik.handleChange}
-            errors={formik.errors.email_phone}
-            touched={formik.touched.email_phone}
+            errors={formik.errors.email}
+            touched={formik.touched.email}
             className="w-full"
             label="Email or Phone Number"
           />
