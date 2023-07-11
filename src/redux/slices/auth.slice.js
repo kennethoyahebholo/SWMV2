@@ -16,8 +16,7 @@ export const register = createAsyncThunk(
         phoneNumber,
         password,
       });
-      toast.success(resp.userResult);
-      return { resp: resp.userResult };
+      return resp;
     } catch (error) {
       const message = formatErrorResponse(error);
       toast.error(message);

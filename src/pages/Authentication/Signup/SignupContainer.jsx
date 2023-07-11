@@ -43,31 +43,37 @@ export const SignupContainer = () => {
       console.log(details);
       setIsLoading(true);
       console.log(details);
-      setTimeout(() => {
-        setIsLoading(false);
-        toast.success("Registered Successfully");
-        navigate(SIGNUP_SUCCESS);
-      }, 3000);
+      // setTimeout(() => {
+      //   setIsLoading(false);
+      //   toast.success("Registered Successfully");
+      //   navigate(SIGNUP_SUCCESS);
+      // }, 3000);
 
-      // void dispatch(
-      //   register({
-      //     email: details.email,
-      //     phoneNumber: details.phone.toString(),
-      //     password: details.password,
-      //   })
-      // )
-      //   .unwrap()
-      //   .then((res) => {
-      //     console.log(res);
-      //     if (res?.statusCodeValue === 400) {
-      //       toast.error(res.body);
-      //       return;
-      //     }
-      //     if (res && res?.statusCodeValue === 200) {
-      //       navigate(SIGNUP_SUCCESS);
-      //       return;
-      //     }
-      //   });
+      void dispatch(
+        register({
+          email: details.email,
+          phoneNumber: details.phone.toString(),
+          password: details.password,
+        })
+      )
+        .unwrap()
+        .then((res) => {
+          console.log(res, "resp");
+          if (res?.statusCodeValue === 400) {
+            setIsLoading(false);
+            toast.error(res.body);
+            return;
+          }
+          if (
+            res &&
+            (res?.statusCodeValue === 200 || res?.statusCodeValue === 201)
+          ) {
+            setIsLoading(false);
+            toast.success(res.body);
+            navigate(SIGNUP_SUCCESS);
+            return;
+          }
+        });
     },
   });
 

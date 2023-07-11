@@ -1,6 +1,6 @@
 const dev = {
   REDIRECT_URL: "http://localhost:3000",
-  API_BASE_URL: "http://localhost:3000",
+  API_BASE_URL: "http://ecoguard.us-east-1.elasticbeanstalk.com/api/v1",
   MEETING_BASE_URL: "https//localhost:4443",
 };
 

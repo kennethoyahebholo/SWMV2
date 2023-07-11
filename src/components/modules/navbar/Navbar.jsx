@@ -1,13 +1,6 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  //   ABOUT_ME,
-  //   CUSTOMER_SUPPORT,
-  //   HELP_CENTER,
-  HOME,
-  LOGIN,
-  SERVICES,
-} from "../../../routes/CONSTANTS";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { HOME, LOGIN, PROFILE, SERVICES } from "../../../routes/CONSTANTS";
 import { SWMimages } from "../../../assets";
 import { Button } from "../../widgets";
 import NavLink from "./NavLink";
@@ -16,6 +9,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
+  const { pathname } = useLocation();
   const [showAuthComp, setShowAuthComp] = useState(false);
   const handleShowAuthComp = () => {
     setShowAuthComp(!showAuthComp);
@@ -54,13 +48,15 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
                 {showAuthComp && (
                   <div className="absolute bg-slate-200 right-0 top-16 w-[10rem] md:w-[15rem] transition-transform ">
                     <div className="p-3 lg:p-3 space-y-4 z-50 w-full">
-                      <NavLink to="#" className="inline-flex">
-                        <div className="bg-green-700 py-2 px-[20px] lg:px-[50px] rounded-full flex items-center justify-center w-full">
-                          <h6 className="font-bold text-white text-[12px] lg:text-[14px] ">
-                            View Profile
-                          </h6>
-                        </div>
-                      </NavLink>
+                      {pathname !== PROFILE && (
+                        <NavLink to={PROFILE} className="inline-flex">
+                          <div className="bg-green-700 py-2 px-[20px] lg:px-[50px] rounded-full flex items-center justify-center w-full">
+                            <h6 className="font-bold text-white text-[12px] lg:text-[14px] ">
+                              View Profile
+                            </h6>
+                          </div>
+                        </NavLink>
+                      )}
                       <NavLink to="#" className="inline-flex">
                         <div
                           onClick={() => {

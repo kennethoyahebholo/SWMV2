@@ -7,25 +7,15 @@ import {
   Login,
   Signup,
   AccoutSuccessfullyCreated,
-  //   ForgotPassword,
-  //   Settings,
-  //   LogOut,
-  //   ResetPassword,
-  //   HelpCenter,
-  //   CustomerSupport,
+  Profile,
 } from "../pages";
 import {
-  //   FORGOT_PASSWORD,
   HOME,
   SERVICES,
+  PROFILE,
   LOGIN,
-  //   SETTINGS,
   SIGNUP,
-  //   LOGOUT,
   SIGNUP_SUCCESS,
-  //   RESET_PASSWORD,
-  //   HELP_CENTER,
-  //   CUSTOMER_SUPPORT,
 } from "./CONSTANTS";
 
 import { ProtectedRoute, PublicRoute } from "../components";
@@ -37,6 +27,7 @@ const RouterConfig = () => {
         {/* Public routes should be placed in here */}
         <Route path={HOME} element={<Home />} />
         <Route path={SERVICES} element={<Services />} />
+        <Route path={PROFILE} element={<Profile />} />
 
         {/* <Route path={HELP_CENTER} element={<HelpCenter />} /> */}
         {/* <Route path={CUSTOMER_SUPPORT} element={<CustomerSupport />} /> */}

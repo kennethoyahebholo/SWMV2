@@ -75,34 +75,6 @@ const SignupView = ({ isLoading, formik, handlePhoneInputChange }) => {
   return (
     <div className="w-full m-auto max-w-[1000px]">
       <form onSubmit={formik.handleSubmit} className="space-y-8">
-        {/* <div>
-          <FormInput
-            size="lg"
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formik.values.firstName}
-            touched={formik.touched.firstName}
-            onChange={formik.handleChange}
-            errors={formik.errors.firstName}
-            className="w-full"
-            label="First Name"
-          />
-        </div> */}
-        {/* <div>
-          <FormInput
-            size="lg"
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formik.values.lastName}
-            touched={formik.touched.lastName}
-            onChange={formik.handleChange}
-            errors={formik.errors.lastName}
-            className="w-full"
-            label="Last Name"
-          />
-        </div> */}
         <div>
           <FormInput
             size="lg"
