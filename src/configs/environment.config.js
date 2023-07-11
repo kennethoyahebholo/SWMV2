@@ -1,15 +1,15 @@
 const dev = {
-  REDIRECT_URL: "http://localhost:3000",
-  API_BASE_URL: "http://ecoguard.us-east-1.elasticbeanstalk.com/api/v1",
+  REDIRECT_URL: process.env.REACT_APP_REDIRECT_URL,
+  API_BASE_URL: process.env.REACT_APP_API_BASE_URL,
   MEETING_BASE_URL: "https//localhost:4443",
 };
 
 const prod = {
-  MEETING_BASE_URL: "http://ecoguard.onrender.com/api",
+  MEETING_BASE_URL: "https//localhost:4443",
 };
 
 const getEnv = () => {
-  switch (process.env.NODE_ENV) {
+  switch (process.env.REACT_APP_NODE_ENV) {
     case "development":
       return dev;
     case "production":
