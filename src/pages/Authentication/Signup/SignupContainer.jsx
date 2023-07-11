@@ -7,22 +7,22 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "../../../redux/slices/auth.slice";
 
 export const SignupContainer = () => {
-  const Navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const formik = useFormik({
     initialValues: {
-      // firstName: "",
-      // lastName: "",
       email: "",
       phone: "",
       password: "",
       confirmPassword: "",
     },
     validationSchema: Yup.object().shape({
-      // firstName: Yup.string().required("Please enter your first name."),
-      // lastName: Yup.string().required("Please enter your Last name."),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
@@ -41,9 +41,33 @@ export const SignupContainer = () => {
     }),
     onSubmit: (details) => {
       console.log(details);
-      console.log("+", `234${parseInt(details?.phone, 10)}`);
-      toast.success("Account Created Successfully");
-      Navigate(SIGNUP_SUCCESS);
+      setIsLoading(true);
+      console.log(details);
+      setTimeout(() => {
+        setIsLoading(false);
+        toast.success("Registered Successfully");
+        navigate(SIGNUP_SUCCESS);
+      }, 3000);
+
+      // void dispatch(
+      //   register({
+      //     email: details.email,
+      //     phoneNumber: details.phone.toString(),
+      //     password: details.password,
+      //   })
+      // )
+      //   .unwrap()
+      //   .then((res) => {
+      //     console.log(res);
+      //     if (res?.statusCodeValue === 400) {
+      //       toast.error(res.body);
+      //       return;
+      //     }
+      //     if (res && res?.statusCodeValue === 200) {
+      //       navigate(SIGNUP_SUCCESS);
+      //       return;
+      //     }
+      //   });
     },
   });
 
@@ -56,7 +80,7 @@ export const SignupContainer = () => {
     <Auth message="Join our Smart Waste Management Vision and Make a Difference in Your Community">
       <SignupView
         formik={formik}
-        loading={false}
+        isLoading={isLoading}
         handlePhoneInputChange={handlePhoneInputChange}
       />
     </Auth>

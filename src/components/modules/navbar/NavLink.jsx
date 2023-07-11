@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-const NavLink = ({ to, children }) => {
+const NavLink = ({ to, children, className }) => {
   const { pathname } = useLocation();
   return (
     <Link
@@ -9,7 +9,7 @@ const NavLink = ({ to, children }) => {
         pathname === to
           ? "text-[#628c23] border-b-2 border-b-primary"
           : "text-white hover:text-[#628c23]"
-      } pb-px px-1 font-['Spectral'] text-[20px] font-[600]`}
+      }  px-1 font-['Spectral'] text-[20px] font-[600] w-full ${className}`}
     >
       {children}
     </Link>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { SIGNUP, FORGOT_PASSWORD } from "../../../routes/CONSTANTS";
 import { Button, FormInput, Loader } from "../../../components";
 
-const LoginView = ({ loading, formik }) => {
+const LoginView = ({ isLoading, formik }) => {
   return (
     <div className="w-full m-auto max-w-[1000px]">
       <form onSubmit={formik.handleSubmit} className="space-y-8">
@@ -42,7 +42,7 @@ const LoginView = ({ loading, formik }) => {
             size="lg"
             className="text-[12px]"
           >
-            {loading ? <Loader /> : "Log In"}
+            {isLoading ? <Loader /> : "Log In"}
           </Button>
         </div>
       </form>

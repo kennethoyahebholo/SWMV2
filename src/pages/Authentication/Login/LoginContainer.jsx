@@ -7,8 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { SERVICES } from "../../../routes/CONSTANTS";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 export const LoginContainer = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const Navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -33,18 +35,20 @@ export const LoginContainer = () => {
         ),
     }),
     onSubmit: (details) => {
-      toast.success("Successfully Logged In");
+      setIsLoading(true);
       console.log(details);
       localStorage.setItem("userData", details.email);
       setTimeout(() => {
+        setIsLoading(false);
+        toast.success("Successfully Logged In");
         Navigate(SERVICES);
-      }, 1000);
+      }, 3000);
     },
   });
 
   return (
     <Auth message="Welcome Back">
-      <LoginView formik={formik} />
+      <LoginView formik={formik} isLoading={isLoading} />
     </Auth>
   );
 };

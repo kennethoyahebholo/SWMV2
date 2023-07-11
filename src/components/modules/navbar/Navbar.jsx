@@ -32,9 +32,13 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
           />
         </Link>
 
-        <div className="hidden lg:inline-flex items-center space-x-20">
-          <NavLink to={SERVICES}>Services</NavLink>
-          <NavLink to="/">Help</NavLink>
+        <div className="inline-flex lg:inline-flex items-center space-x-20">
+          <NavLink className="hidden lg:inline-flex" to={SERVICES}>
+            Services
+          </NavLink>
+          <NavLink className="hidden lg:inline-flex" to="/">
+            Help
+          </NavLink>
           <div className="flex items-center space-x-10">
             {auth ? (
               <div className="relative">
@@ -48,22 +52,22 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
                   </div>
                 </div>
                 {showAuthComp && (
-                  <div className="absolute bg-slate-200 right-0 top-16">
-                    <div className="p-3 lg:p-3 space-y-4 z-50 w-[15rem]">
-                      <NavLink to="#">
-                        <div className="bg-green-700 py-2 px-[20px] lg:px-[50px] rounded-full flex items-center justify-center">
+                  <div className="absolute bg-slate-200 right-0 top-16 w-[10rem] md:w-[15rem] transition-transform ">
+                    <div className="p-3 lg:p-3 space-y-4 z-50 w-full">
+                      <NavLink to="#" className="inline-flex">
+                        <div className="bg-green-700 py-2 px-[20px] lg:px-[50px] rounded-full flex items-center justify-center w-full">
                           <h6 className="font-bold text-white text-[12px] lg:text-[14px] ">
                             View Profile
                           </h6>
                         </div>
                       </NavLink>
-                      <NavLink to={SERVICES}>
+                      <NavLink to="#" className="inline-flex">
                         <div
                           onClick={() => {
                             toast.success("User logged out successfully");
                             localStorage.clear();
                           }}
-                          className="border border-green-700 py-2 px-[20px] lg:px-[50px] rounded-full flex items-center justify-center text-white"
+                          className="border border-green-700 py-2 px-[20px] lg:px-[50px] rounded-full flex items-center justify-center text-white w-full"
                         >
                           <h6 className="font-bold text-green-800 text-[12px] lg:text-[14px] ">
                             Log Out
@@ -77,11 +81,11 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
             ) : (
               <Button
                 to={LOGIN}
-                size="lg"
-                className="text-[14px]"
+                size="md"
+                className="flex items-center justify-center text-[14px]"
                 variant="outline"
               >
-                Log in
+                Login
               </Button>
             )}
           </div>

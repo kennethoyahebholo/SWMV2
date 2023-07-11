@@ -7,7 +7,7 @@ import { Icon } from "react-icons-kit";
 import { arrows_exclamation } from "react-icons-kit/linea/arrows_exclamation";
 import { arrows_circle_check } from "react-icons-kit/linea/arrows_circle_check";
 
-const SignupView = ({ loading, formik, handlePhoneInputChange }) => {
+const SignupView = ({ isLoading, formik, handlePhoneInputChange }) => {
   const lowerValidated = useRef(false);
   const lengthValidated = useRef(false);
   const upperValidated = useRef(false);
@@ -260,7 +260,7 @@ const SignupView = ({ loading, formik, handlePhoneInputChange }) => {
             size="lg"
             className="text-[12px]"
           >
-            {loading ? <Loader /> : "Sign up"}
+            {isLoading ? <Loader /> : "Sign up"}
           </Button>
         </div>
       </form>

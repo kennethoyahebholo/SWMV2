@@ -13,7 +13,7 @@ const Button = ({
       case "sm":
         return "px-2 h-8";
       case "md":
-        return "px-[50px] h-12";
+        return "px-2 h-8 md:px-[80px] md:h-14";
       case "lg":
         return "px-[80px] h-14";
 
