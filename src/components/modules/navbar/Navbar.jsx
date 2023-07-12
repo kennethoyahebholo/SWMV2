@@ -44,21 +44,14 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
           />
         </Link>
 
-        <div className="inline-flex lg:inline-flex items-center space-x-20">
-          <NavLink className="hidden lg:inline-flex" to={SERVICES}>
+        <div className="inline-flex lg:inline-flex items-center space-x-5 md:space-x-20">
+          <NavLink className="inline-flex" to={SERVICES}>
             Services
-          </NavLink>
-          <NavLink className="hidden lg:inline-flex" to="/">
-            Help
           </NavLink>
           <div className="flex items-center space-x-10">
             {auth ? (
               <div className="relative">
-                <div
-                  className="cursor-pointer"
-                  // onMouseEnter={handleShowAuthComp}
-                  onClick={handleShowAuthComp}
-                >
+                <div className="cursor-pointer" onClick={handleShowAuthComp}>
                   <div className="flex items-center justify-center bg-[#628c23] w-10 h-10 rounded-full">
                     <MdPerson />
                   </div>

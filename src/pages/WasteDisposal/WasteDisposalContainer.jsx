@@ -5,9 +5,10 @@ import WasteDisposalView from "./WasteDisposalView";
 import { Landing } from "../../components";
 import { toast } from "react-toastify";
 
+import "./styles.css";
+
 export const WasteDisposalContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
   const formik = useFormik({
     initialValues: {
       pickupAddress: "",
@@ -17,20 +18,25 @@ export const WasteDisposalContainer = () => {
     },
     validationSchema: Yup.object().shape({
       pickupAddress: Yup.string().required("Pickup Address is required"),
-      quantityOfBagsOrBins: Yup.string().required(
-        "Quantity of Bins is required"
-      ),
+      quantityOfBagsOrBins: Yup.string().when("binRequest", {
+        is: (binRequest) => binRequest === "yes",
+        then: Yup.string().required("Quantity of Bins is required"),
+      }),
       binRequest: Yup.string().required("Bin Request is required"),
       location: Yup.string().required("Location is required"),
     }),
     onSubmit: (details, { resetForm }) => {
-      console.log(details);
       setIsLoading(true);
       console.log(details);
       setTimeout(() => {
         setIsLoading(false);
         toast.success("Updated Successfully");
-        resetForm({ details: "" });
+        resetForm({
+          pickupAddress: "",
+          quantityOfBagsOrBins: "",
+          binRequest: "",
+          location: "",
+        });
         // navigate(SIGNUP_SUCCESS);
       }, 3000);
 
@@ -62,11 +68,11 @@ export const WasteDisposalContainer = () => {
       title: "Do You Want a Bin",
     },
     {
-      value: 0,
+      value: "0",
       title: "No",
     },
     {
-      value: 1,
+      value: "1",
       title: "Yes",
     },
   ];

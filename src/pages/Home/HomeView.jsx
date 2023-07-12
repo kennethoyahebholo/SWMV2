@@ -29,16 +29,16 @@ const HomeView = () => {
             community clean.
           </p>
         </div>
-        <section class="callToAction">
+        <section className="callToAction">
           <Link to={SERVICES}>
-            <button class="mainButton">
+            <button className="mainButton">
               <span></span>
               <span></span>
               <span></span>
               <span></span>
               <span>SERVICES</span>
             </button>
-            <button class="altButton">SERVICES</button>
+            <button className="altButton">SERVICES</button>
           </Link>
         </section>
       </div>

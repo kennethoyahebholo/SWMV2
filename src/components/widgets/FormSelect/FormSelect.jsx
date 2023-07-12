@@ -9,6 +9,7 @@ const FormSelect = ({
   optional,
   size,
   placeholder,
+  message,
   ...rest
 }) => {
   const error = touched !== undefined && errors !== undefined;
@@ -32,6 +33,12 @@ const FormSelect = ({
         )}
         {required && (
           <small className="text-red-700 text-[10px]">Required</small>
+        )}
+        {message && (
+          <small className="text-[#009D49] font-LatoRegular text-[14px]">
+            Please Note That The Pickup Date for this Selected Location is{" "}
+            {message}
+          </small>
         )}
       </div>
 

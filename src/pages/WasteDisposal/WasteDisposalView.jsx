@@ -7,28 +7,11 @@ const WasteDisposalView = ({
   binRequestOption,
   locationOption,
 }) => {
-  const industriesList = [
-    {
-      value: "",
-      title: "Select Role",
-    },
-    {
-      value: "admin",
-      title: "Admin",
-    },
-    {
-      value: "store-manager",
-      title: "Store Manager",
-    },
-    {
-      value: "staff",
-      title: "Staff",
-    },
-    {
-      value: "customer",
-      title: "Customer",
-    },
-  ];
+  const pickUpDays = {
+    ikeja: "Mondays",
+    surulere: "Wednesdays",
+    yaba: "Tuesdays",
+  };
   return (
     <div className="w-full m-auto max-w-[1000px] px-4">
       <h1 className="text-center text-[35px] font-bold mb-[1rem] mt-3">
@@ -36,28 +19,13 @@ const WasteDisposalView = ({
       </h1>
       <form onSubmit={formik.handleSubmit} className="space-y-8">
         <div>
-          <FormInput
-            size="lg"
-            type="text"
-            id="quantityOfBagsOrBins"
-            name="quantityOfBagsOrBins"
-            value={formik.values.quantityOfBagsOrBins}
-            touched={formik.touched.quantityOfBagsOrBins}
-            onChange={formik.handleChange}
-            errors={formik.errors.quantityOfBagsOrBins}
-            className="w-full"
-            label="Quantity of Bins"
-          />
-        </div>
-
-        <div>
           <FormSelect
             size="lg"
             options={binRequestOption}
             id="binRequest"
             name="binRequest"
             placeholder="Choose"
-            // value={formik.values.gender}
+            value={formik.values.binRequest}
             touched={formik.touched.binRequest}
             onChange={formik.handleChange}
             errors={formik.errors.binRequest}
@@ -65,6 +33,22 @@ const WasteDisposalView = ({
             label="Bin Request"
           />
         </div>
+        {formik?.values?.binRequest === "1" && (
+          <div className="dropInField">
+            <FormInput
+              size="lg"
+              type="number"
+              id="quantityOfBagsOrBins"
+              name="quantityOfBagsOrBins"
+              value={formik.values.quantityOfBagsOrBins}
+              touched={formik.touched.quantityOfBagsOrBins}
+              onChange={formik.handleChange}
+              errors={formik.errors.quantityOfBagsOrBins}
+              className="w-full"
+              label="Quantity of Bins"
+            />
+          </div>
+        )}
 
         <div>
           <FormSelect
@@ -72,6 +56,11 @@ const WasteDisposalView = ({
             options={locationOption}
             id="location"
             name="location"
+            message={
+              formik?.values?.location
+                ? pickUpDays[formik?.values?.location]
+                : false
+            }
             placeholder="Select Location"
             value={formik.values.location}
             touched={formik.touched.location}
@@ -82,20 +71,22 @@ const WasteDisposalView = ({
           />
         </div>
 
-        <div>
-          <FormInput
-            size="lg"
-            type="text"
-            id="pickupAddress"
-            name="pickupAddress"
-            value={formik.values.pickupAddress}
-            touched={formik.touched.pickupAddress}
-            onChange={formik.handleChange}
-            errors={formik.errors.pickupAddress}
-            className="w-full"
-            label="Pickup Address"
-          />
-        </div>
+        {formik?.values?.location && (
+          <div className="dropInField">
+            <FormInput
+              size="lg"
+              type="text"
+              id="pickupAddress"
+              name="pickupAddress"
+              value={formik.values.pickupAddress}
+              touched={formik.touched.pickupAddress}
+              onChange={formik.handleChange}
+              errors={formik.errors.pickupAddress}
+              className="w-full"
+              label="Pickup Address"
+            />
+          </div>
+        )}
         <div className="flex items-center justify-center py-10">
           <Button
             type="submit"

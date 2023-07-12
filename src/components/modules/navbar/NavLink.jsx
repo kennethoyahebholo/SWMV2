@@ -9,7 +9,7 @@ const NavLink = ({ to, children, className }) => {
         pathname === to
           ? "text-[#628c23] border-b-2 border-b-primary"
           : "text-white hover:text-[#628c23]"
-      }  px-1 font-['Spectral'] text-[20px] font-[600] w-full ${className}`}
+      }  px-1 font-['Spectral'] text-[12px] md:text-[20px] font-[600] w-full ${className}`}
     >
       {children}
     </Link>
