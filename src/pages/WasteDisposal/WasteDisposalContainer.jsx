@@ -58,27 +58,35 @@ export const WasteDisposalContainer = () => {
 
   const binRequestOption = [
     {
+      value: "",
+      title: "Do You Want a Bin",
+    },
+    {
       value: 0,
-      label: "No",
+      title: "No",
     },
     {
       value: 1,
-      label: "Yes",
+      title: "Yes",
     },
   ];
 
   const locationOption = [
     {
+      value: "",
+      title: "Select Location",
+    },
+    {
       value: "ikeja",
-      label: "Ikeja",
+      title: "Ikeja",
     },
     {
       value: "surulere",
-      label: "Surulere",
+      title: "Surulere",
     },
     {
       value: "yaba",
-      label: "Yaba",
+      title: "Yaba",
     },
   ];
 

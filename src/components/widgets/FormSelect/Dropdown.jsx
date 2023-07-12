@@ -1,114 +1,32 @@
-import React from "react";
-import Select from "react-select";
-
-const Dropdown = ({
-  options,
-  size = "md",
-  className = "",
-  isMulti,
-  placeholder,
-  ...props
-}) => {
+const Dropdown = ({ options, size = "md", className = "", ...props }) => {
+  // const [selected, onSelect] = useState("Enter Industry");
   const getSize = (size) => {
     switch (size) {
       case "sm":
-        return "py-2 px-[12px]";
+        return "px-2 h-10";
       case "md":
-        return "";
+        return "px-4 h-12";
       case "lg":
-        return "py-5 px-[28px]";
+        return "px-2 h-16";
 
       default:
-        return "";
+        return "p-1 h-10";
     }
   };
 
-  const colorStyles = {
-    control: (styles) => ({
-      ...styles,
-      backgroundColor: "white",
-      border: "1.5px solid #333333",
-      borderRadius: "6px",
-      minHeight: "40px",
-      ":hover": {
-        border: "1.5px solid #333333",
-      },
-    }),
-    option: (styles) => {
-      return { ...styles, color: "#8692A6]" };
-    },
-    input: (styles) => {
-      return { ...styles, height: "3rem" };
-    },
-    placeholder: (provided) => ({
-      ...provided,
-      fontWeight: "600",
-      color: "#9CA3AF",
-    }),
-    menu: (provided) => ({
-      ...provided,
-      borderRadius: "0.375rem",
-    }),
-    multiValue: (styles, { data }) => {
-      return {
-        ...styles,
-        backgroundColor: "#004B9D",
-        color: "red",
-        padding: "3px",
-        borderRadius: "3px",
-      };
-    },
-    multiValueLabel: (styles, { data }) => {
-      return { ...styles, color: "#FFFFFF", fontSize: "8px" };
-    },
-    multiValueRemove: (styles, { data }) => {
-      return {
-        ...styles,
-        color: "#FFFFFF",
-        cursor: "pointer",
-        ":hover": {
-          color: "#FFFFFF",
-        },
-      };
-    },
-    indicatorSeparator: (provided) => ({
-      ...provided,
-      display: "none",
-    }),
-    dropdownIndicator: (provided) => ({
-      ...provided,
-      color: "#004B9D",
-      "&:hover": {
-        color: "#004B9D",
-      },
-    }),
-  };
-
-  const handleChange = (selectedOption) => {
-    console.log(selectedOption);
-  };
-
-  const customInput = ({ className, ...props }) => (
-    <div className={`relative ${className} w-full`}>
-      <input
-        {...props}
-        placeholder={placeholder}
-        className={`${getSize(size)} w-full outline-none`}
-      />
-    </div>
-  );
-
-  const customPlaceholder = () => <span className=""></span>;
-
   return (
-    <Select
-      className={`${className} text-base bg-white placeholder:text-[#8692A6]`}
+    <select
+      className={`${getSize(
+        size
+      )} ${className} text-base bg-white placeholder:text-[#8692A6] border-[1.5px] border-[#333333] rounded-[6px] focus:border-[#004B9D] outline-none`}
       {...props}
-      name="dropdownValue"
-      options={options}
-      styles={colorStyles}
-      onChange={handleChange}
-    />
+    >
+      {options.map(({ value, title }, key) => (
+        <option key={key} value={value} className="text-lg">
+          {title}
+        </option>
+      ))}
+    </select>
   );
 };
 
