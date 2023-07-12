@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import WasteRecyclingView from "./WasteRecyclingView";
 import { Landing } from "../../components";
 import { toast } from "react-toastify";
-import { scheduleWasteRecycling } from "../../redux/slices/services.slice";
+import { scheduleWasteRecycling } from "../../redux/slices/recycle-services.slice";
 import { useDispatch, useSelector } from "react-redux";
 import { SERVICES } from "../../routes/CONSTANTS";
 import { useNavigate } from "react-router-dom";

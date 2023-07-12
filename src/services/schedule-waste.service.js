@@ -8,10 +8,16 @@ import {
   WASTE_RECYCLING,
 } from "./CONSTANTS";
 
-export const ScheduleWasteDisposal = async ({ binRequestDto, scheduleDto }) => {
+export const ScheduleWasteDisposal = async ({
+  binRequestDto,
+  scheduleDto,
+  refLocationId,
+  userId,
+}) => {
   return await axios
-    .post(`${env.API_BASE_URL}/${WASTE_DISPOSAL}`, {
+    .post(`${env.API_BASE_URL}/${WASTE_DISPOSAL}/${userId}`, {
       binRequestDto,
+      refLocationId,
       scheduleDto,
     })
     .then((res) => {

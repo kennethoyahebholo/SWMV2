@@ -6,19 +6,26 @@ import { Landing } from "../../components";
 import { toast } from "react-toastify";
 
 import "./styles.css";
+import { useDispatch, useSelector } from "react-redux";
+import { scheduleWasteDisposal } from "../../redux/slices/waste-services";
+import { SERVICES } from "../../routes/CONSTANTS";
+import { useNavigate } from "react-router-dom";
 
 export const WasteDisposalContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { user, loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      pickupAddress: "",
-      quantityOfBagsOrBins: "",
       binRequest: "",
+      binQuantity: "",
       location: "",
+      pickupAddress: "",
     },
     validationSchema: Yup.object().shape({
       pickupAddress: Yup.string().required("Pickup Address is required"),
-      quantityOfBagsOrBins: Yup.string().when("binRequest", {
+      binQuantity: Yup.string().when("binRequest", {
         is: (binRequest) => binRequest === "yes",
         then: Yup.string().required("Quantity of Bins is required"),
       }),
@@ -28,37 +35,38 @@ export const WasteDisposalContainer = () => {
     onSubmit: (details, { resetForm }) => {
       setIsLoading(true);
       console.log(details);
-      setTimeout(() => {
-        setIsLoading(false);
-        toast.success("Updated Successfully");
-        resetForm({
-          pickupAddress: "",
-          quantityOfBagsOrBins: "",
-          binRequest: "",
-          location: "",
+      void dispatch(
+        scheduleWasteDisposal({
+          binRequestDto: {
+            requestStatus: details?.binRequest,
+            binQuantity: details?.binQuantity,
+          },
+          refLocationId: details?.location,
+          scheduleDto: {
+            pickupAddress: details?.pickupAddress,
+          },
+          userId: user?.id,
+        })
+      )
+        .unwrap()
+        .then((res) => {
+          console.log(res);
+          if (res?.statusCodeValue === 400) {
+            toast.error(res.body);
+            setIsLoading(false);
+            return;
+          }
+          if (res) {
+            navigate(SERVICES);
+            toast.success(res);
+            setIsLoading(false);
+            return;
+          }
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          setIsLoading(false);
         });
-        // navigate(SIGNUP_SUCCESS);
-      }, 3000);
-
-      // void dispatch(
-      //   register({
-      //     email: details.email,
-      //     phoneNumber: details.phone.toString(),
-      //     password: details.password,
-      //   })
-      // )
-      //   .unwrap()
-      //   .then((res) => {
-      //     console.log(res);
-      //     if (res?.statusCodeValue === 400) {
-      //       toast.error(res.body);
-      //       return;
-      //     }
-      //     if (res && res?.statusCodeValue === 200) {
-      //       navigate(SIGNUP_SUCCESS);
-      //       return;
-      //     }
-      //   });
     },
   });
 
@@ -83,16 +91,20 @@ export const WasteDisposalContainer = () => {
       title: "Select Location",
     },
     {
-      value: "ikeja",
-      title: "Ikeja",
+      value: "2",
+      title: "Alimosho",
     },
     {
-      value: "surulere",
-      title: "Surulere",
+      value: "3",
+      title: "Lagos",
     },
     {
-      value: "yaba",
-      title: "Yaba",
+      value: "4",
+      title: "Somolu",
+    },
+    {
+      value: "5",
+      title: "Ikorodu",
     },
   ];
 

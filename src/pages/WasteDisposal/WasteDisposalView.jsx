@@ -8,9 +8,10 @@ const WasteDisposalView = ({
   locationOption,
 }) => {
   const pickUpDays = {
-    ikeja: "Mondays",
-    surulere: "Wednesdays",
-    yaba: "Tuesdays",
+    2: "Mondays",
+    3: "Tuesdays",
+    4: "Wednesdays",
+    5: "Thursdays",
   };
   return (
     <div className="w-full m-auto max-w-[1000px] px-4">
@@ -38,12 +39,12 @@ const WasteDisposalView = ({
             <FormInput
               size="lg"
               type="number"
-              id="quantityOfBagsOrBins"
-              name="quantityOfBagsOrBins"
-              value={formik.values.quantityOfBagsOrBins}
-              touched={formik.touched.quantityOfBagsOrBins}
+              id="binQuantity"
+              name="binQuantity"
+              value={formik.values.binQuantity}
+              touched={formik.touched.binQuantity}
               onChange={formik.handleChange}
-              errors={formik.errors.quantityOfBagsOrBins}
+              errors={formik.errors.binQuantity}
               className="w-full"
               label="Quantity of Bins"
             />
