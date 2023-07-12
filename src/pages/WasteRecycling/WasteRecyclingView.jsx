@@ -1,7 +1,25 @@
 import React from "react";
-import { Button, FormInput, FormSelect, Loader } from "../../components";
+import {
+  AppDatePicker,
+  Button,
+  FormInput,
+  FormSelect,
+  Loader,
+} from "../../components";
 
-const WasteRecycling = ({ formik, isLoading, genderOption }) => {
+const WasteRecycling = ({
+  formik,
+  isLoading,
+  categoryOption,
+  locationOption,
+  binOrBagOption,
+}) => {
+  const pickUpDays = {
+    2: "Mondays",
+    3: "Tuesdays",
+    4: "Wednesdays",
+    5: "Thursdays",
+  };
   return (
     <div className="w-full m-auto max-w-[1000px] px-4">
       <h1 className="text-center text-[35px] font-bold mb-[1rem] mt-3">
@@ -9,89 +27,110 @@ const WasteRecycling = ({ formik, isLoading, genderOption }) => {
       </h1>
       <form onSubmit={formik.handleSubmit} className="space-y-8">
         <div>
-          <FormInput
+          <FormSelect
+            size="lg"
+            options={binOrBagOption}
+            id="binOrBag"
+            name="binOrBag"
+            placeholder="Choose"
+            value={formik.values.binOrBag}
+            touched={formik.touched.binOrBag}
+            onChange={formik.handleChange}
+            errors={formik.errors.binOrBag}
+            className="w-full "
+            label="Bin Or Bag Request"
+          />
+        </div>
+        {formik?.values?.binOrBag && (
+          <div className="dropInField">
+            <FormInput
+              size="lg"
+              type="number"
+              id="quantityOfBagsOrBins"
+              name="quantityOfBagsOrBins"
+              value={formik.values.quantityOfBagsOrBins}
+              touched={formik.touched.quantityOfBagsOrBins}
+              onChange={formik.handleChange}
+              errors={formik.errors.quantityOfBagsOrBins}
+              className="w-full"
+              label="Quantity of Bins or Bags"
+            />
+          </div>
+        )}
+        <div>
+          <FormSelect
             size="lg"
             type="text"
-            id="pickupAddress"
-            name="pickupAddress"
-            value={formik.values.pickupAddress}
-            touched={formik.touched.pickupAddress}
+            options={categoryOption}
+            id="category"
+            name="category"
+            placeholder="Select Category"
+            value={formik.values.category}
+            touched={formik.touched.category}
             onChange={formik.handleChange}
-            errors={formik.errors.pickupAddress}
-            className="w-full"
-            label="Pickup Address"
+            errors={formik.errors.category}
+            className="w-full "
+            label="Select Category"
           />
         </div>
         <div>
-          <FormInput
+          <FormSelect
             size="lg"
-            type="text"
-            id="pickupAddress"
-            name="pickupAddress"
-            value={formik.values.pickupAddress}
-            touched={formik.touched.pickupAddress}
+            options={locationOption}
+            id="location"
+            name="location"
+            message={
+              formik?.values?.location
+                ? pickUpDays[formik?.values?.location]
+                : false
+            }
+            placeholder="Select Location"
+            value={formik.values.location}
+            touched={formik.touched.location}
             onChange={formik.handleChange}
-            errors={formik.errors.pickupAddress}
-            className="w-full"
-            label="Pickup Date"
+            errors={formik.errors.location}
+            className="w-full "
+            label="Location"
           />
         </div>
-        <div>
-          <FormInput
-            size="lg"
-            type="text"
-            id="pickupAddress"
-            name="pickupAddress"
-            value={formik.values.pickupAddress}
-            touched={formik.touched.pickupAddress}
-            onChange={formik.handleChange}
-            errors={formik.errors.pickupAddress}
-            className="w-full"
-            label="Bins"
-          />
-        </div>
-        <div>
-          <FormInput
-            size="lg"
-            type="text"
-            id="pickupAddress"
-            name="pickupAddress"
-            value={formik.values.pickupAddress}
-            touched={formik.touched.pickupAddress}
-            onChange={formik.handleChange}
-            errors={formik.errors.pickupAddress}
-            className="w-full"
-            label="Bags"
-          />
-        </div>
-        <div>
-          <FormInput
-            size="lg"
-            type="number"
-            id="quantityOfBagsOrBins"
-            name="quantityOfBagsOrBins"
-            value={formik.values.quantityOfBagsOrBins}
-            touched={formik.touched.quantityOfBagsOrBins}
-            onChange={formik.handleChange}
-            errors={formik.errors.quantityOfBagsOrBins}
-            className="w-full"
-            label="Quantity of Bins or Bags"
-          />
-        </div>
-        <div>
-          <FormInput
-            size="lg"
-            type="number"
-            id="quantityOfBagsOrBins"
-            name="quantityOfBagsOrBins"
-            value={formik.values.quantityOfBagsOrBins}
-            touched={formik.touched.quantityOfBagsOrBins}
-            onChange={formik.handleChange}
-            errors={formik.errors.quantityOfBagsOrBins}
-            className="w-full"
-            label="Bins Quantity"
-          />
-        </div>
+
+        {formik?.values?.location && (
+          <div className="dropInField">
+            <div>
+              <AppDatePicker
+                size="lg"
+                type="text"
+                id="pickUpDate"
+                name="pickUpDate"
+                value={formik.values.pickUpDate}
+                touched={formik.touched.pickUpDate}
+                onChange={formik.handleChange}
+                errors={formik.errors.pickUpDate}
+                className="w-full"
+                label="Pickup Date"
+                message={
+                  formik?.values?.location
+                    ? pickUpDays[formik?.values?.location]
+                    : false
+                }
+              />
+            </div>
+            <div>
+              <FormInput
+                size="lg"
+                type="text"
+                id="address"
+                name="address"
+                value={formik.values.address}
+                touched={formik.touched.address}
+                onChange={formik.handleChange}
+                errors={formik.errors.address}
+                className="w-full"
+                label="Pickup Address"
+              />
+            </div>
+          </div>
+        )}
         <div className="flex items-center justify-center py-10">
           <Button
             type="submit"

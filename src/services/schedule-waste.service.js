@@ -31,18 +31,15 @@ export const ScheduleWasteRecycling = async ({
   categoryId,
 }) => {
   return await axios
-    .post(
-      `${env.API_BASE_URL}/${WASTE_RECYCLING}?id=${userId}?categoryId=${categoryId}`,
-      {
-        pickupAddress,
-        pickUpDate,
-        bin,
-        bag,
-        quantityOfBagsOrBins,
-        binQuantity,
-        refLocationId,
-      }
-    )
+    .post(`${env.API_BASE_URL}/${WASTE_RECYCLING}/${userId}/${categoryId}`, {
+      pickupAddress,
+      pickUpDate,
+      bin,
+      bag,
+      quantityOfBagsOrBins,
+      binQuantity,
+      refLocationId,
+    })
     .then((res) => {
       return res;
     });
