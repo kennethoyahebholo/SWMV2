@@ -53,6 +53,7 @@ export const WasteDisposalContainer = () => {
           console.log(res);
           if (res?.statusCodeValue === 400) {
             toast.error(res.body);
+            resetForm();
             setIsLoading(false);
             return;
           }
