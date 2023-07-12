@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import moment from "moment";
+import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { SWMCalendar } from "../../icons";
@@ -38,7 +39,7 @@ const AppDatePicker = ({
     }
   };
   const error = touched !== undefined && errors !== undefined;
-  const [selectedDate, setSelectedDate] = useState(null);
+  const parsedValue = value ? moment(value, "DD-MM-YYYY").toDate() : null;
   const CustomInput = ({ value, onClick }) => (
     <div className="relative w-full">
       <input
@@ -81,9 +82,9 @@ const AppDatePicker = ({
         )}
       </div>
       <DatePicker
-        selected={selectedDate}
-        onChange={(date) => setSelectedDate(date)}
-        dateFormat={dateFormat || "dd/MM/yyyy"}
+        selected={parsedValue}
+        onChange={onChange}
+        dateFormat={dateFormat || "dd-MM-yyyy"}
         maxDate={new Date(maxDate)}
         minDate={new Date(minDate)}
         showYearDropdown

@@ -25,6 +25,7 @@ export const ScheduleWasteRecycling = async ({
   bin,
   bag,
   quantityOfBagsOrBins,
+  requestStatus,
   binQuantity,
   refLocationId,
   userId,
@@ -39,6 +40,7 @@ export const ScheduleWasteRecycling = async ({
       quantityOfBagsOrBins,
       binQuantity,
       refLocationId,
+      requestStatus,
     })
     .then((res) => {
       return res;

@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import {
   AppDatePicker,
@@ -13,6 +14,7 @@ const WasteRecycling = ({
   categoryOption,
   locationOption,
   binOrBagOption,
+  binRequestOption,
 }) => {
   const pickUpDays = {
     2: "Mondays",
@@ -20,6 +22,7 @@ const WasteRecycling = ({
     4: "Wednesdays",
     5: "Thursdays",
   };
+  const [pod, setPod] = React.useState();
   return (
     <div className="w-full m-auto max-w-[1000px] px-4">
       <h1 className="text-center text-[35px] font-bold mb-[1rem] mt-3">
@@ -27,6 +30,37 @@ const WasteRecycling = ({
       </h1>
       <form onSubmit={formik.handleSubmit} className="space-y-8">
         <div>
+          <FormSelect
+            size="lg"
+            options={binRequestOption}
+            id="binRequest"
+            name="binRequest"
+            placeholder="Choose"
+            value={formik.values.binRequest}
+            touched={formik.touched.binRequest}
+            onChange={formik.handleChange}
+            errors={formik.errors.binRequest}
+            className="w-full "
+            label="Bin Request"
+          />
+        </div>
+        {formik?.values?.binRequest === "true" && (
+          <div className="dropInField">
+            <FormInput
+              size="lg"
+              type="number"
+              id="binQuantity"
+              name="binQuantity"
+              value={formik.values.binQuantity}
+              touched={formik.touched.binQuantity}
+              onChange={formik.handleChange}
+              errors={formik.errors.binQuantity}
+              className="w-full"
+              label="Quantity of Bins"
+            />
+          </div>
+        )}
+        <div className="mb-8">
           <FormSelect
             size="lg"
             options={binOrBagOption}
@@ -102,9 +136,16 @@ const WasteRecycling = ({
                 type="text"
                 id="pickUpDate"
                 name="pickUpDate"
-                value={formik.values.pickUpDate}
+                value={formik?.values?.pickUpDate}
                 touched={formik.touched.pickUpDate}
-                onChange={formik.handleChange}
+                // onChange={formik.handleChange}
+                onChange={(date) => {
+                  setPod(date);
+                  formik.setFieldValue(
+                    "pickUpDate",
+                    moment(date).format("DD-MM-YYYY")
+                  );
+                }}
                 errors={formik.errors.pickUpDate}
                 className="w-full"
                 label="Pickup Date"
