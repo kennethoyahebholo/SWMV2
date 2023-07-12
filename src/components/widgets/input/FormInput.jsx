@@ -28,10 +28,10 @@ const FormInput = ({
             </label>
           )}
           {optional && (
-            <small className="text-[#009D49] text-[10px]">Optional</small>
+            <small className="text-[#009D49] text-[10px]">{optional}</small>
           )}
           {required && (
-            <small className="text-red-700 text-[10px]">Required</small>
+            <small className="text-red-700 text-[10px]">{required}</small>
           )}
         </div>
 

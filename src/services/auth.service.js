@@ -8,6 +8,7 @@ import {
   LOG_OUT,
   REGISTER,
   SWM_USER_DATA,
+  SWM_USER_EMAIL,
 } from "./CONSTANTS";
 
 export const Signin = async ({ email, password }) => {

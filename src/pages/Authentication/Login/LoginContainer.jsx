@@ -7,16 +7,20 @@ import { useNavigate } from "react-router-dom";
 import { SERVICES } from "../../../routes/CONSTANTS";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../redux/slices/auth.slice";
 import { useQuery } from "../../../hooks";
+import { getUserByEmail } from "../../../redux/slices/user.slice";
+import { setUserEmail } from "../../../redux/slices/userEmail.slice";
+import { SWM_USER_EMAIL } from "../../../services/CONSTANTS";
 
 export const LoginContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const query = useQuery();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -44,7 +48,10 @@ export const LoginContainer = () => {
       void dispatch(login(details))
         .unwrap()
         .then((resp) => {
-          console.log(resp);
+          const email = JSON.parse(resp?.config?.data)?.email;
+          dispatch(getUserByEmail(email));
+          localStorage.setItem(SWM_USER_EMAIL, JSON.stringify(email));
+          // dispatch(setUserEmail(email));
           const redirect = query.get("redirect");
           if (redirect) {
             //  redirect to absolute URL - possibly initiated from VC app

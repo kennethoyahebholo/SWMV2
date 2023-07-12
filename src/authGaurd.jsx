@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
 import {
   FORGOT_PASSWORD,
   HOME,
@@ -8,11 +7,14 @@ import {
   SERVICES,
   SIGNUP,
 } from "./routes/CONSTANTS";
-import { SWM_USER_DATA } from "./services/CONSTANTS";
+import { SWM_USER_DATA, SWM_USER_EMAIL } from "./services/CONSTANTS";
+import { useDispatch } from "react-redux";
+import { getUserByEmail } from "./redux/slices/user.slice";
 
 const AuthGaurd = ({ children }) => {
+  const dispatch = useDispatch();
   const userToken = JSON.parse(localStorage.getItem(SWM_USER_DATA));
-  let decodedToken = null;
+  const userEmail = JSON.parse(localStorage.getItem(SWM_USER_EMAIL));
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const shouldGetProfile = ![
@@ -37,16 +39,7 @@ const AuthGaurd = ({ children }) => {
   useEffect(() => {
     if (localStorage?.SWM_USER_DATA && shouldGetProfile) {
       if (userToken) {
-        try {
-          // eslint-disable-next-line react-hooks/exhaustive-deps
-          decodedToken = jwt_decode(userToken);
-          console.log(decodedToken);
-        } catch (error) {
-          console.error("Error decoding token:", error);
-          // Handle the error or set default values if necessary
-        }
-      } else {
-        // Handle the case when the token is not found in localStorage
+        dispatch(getUserByEmail(userEmail));
       }
     }
   }, [localStorage?.SWM_USER_DATA, shouldGetProfile]);

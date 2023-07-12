@@ -1,13 +1,31 @@
 import React from "react";
 import { Button, FormInput, FormSelect, Loader } from "../../components";
 
-const ProfileView = ({ formik, isLoading, genderOption }) => {
+const ProfileView = ({ formik, isLoading, genderOption, user }) => {
   return (
     <div className="w-full m-auto max-w-[1000px] px-4">
       <h1 className="text-center text-[35px] font-bold mb-[1rem] mt-3">
         YOUR PROFILE
       </h1>
       <form onSubmit={formik.handleSubmit} className="space-y-8">
+        <div>
+          <FormInput
+            size="lg"
+            type="text"
+            id="email"
+            name="email"
+            value={formik.values.email}
+            touched={formik.touched.email}
+            onChange={formik.handleChange}
+            errors={formik.errors.email}
+            className="w-full"
+            label="Email"
+            required={
+              !user?.emailVerificationStatus ? "Email is not verified" : ""
+            }
+            optional={user?.emailVerificationStatus ? "Email is verified" : ""}
+          />
+        </div>
         <div>
           <FormInput
             size="lg"
@@ -59,7 +77,7 @@ const ProfileView = ({ formik, isLoading, genderOption }) => {
             id="gender"
             name="gender"
             placeholder="Select Gender"
-            // value={formik.values.gender}
+            value={formik.values.gender}
             touched={formik.touched.gender}
             onChange={formik.handleChange}
             errors={formik.errors.gender}

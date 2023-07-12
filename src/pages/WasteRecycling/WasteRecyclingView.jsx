@@ -1,9 +1,6 @@
 import React from "react";
 import { Button, FormInput, FormSelect, Loader } from "../../components";
 
-// bin: "",
-// bag: "",
-
 const WasteRecycling = ({ formik, isLoading, genderOption }) => {
   return (
     <div className="w-full m-auto max-w-[1000px] px-4">
