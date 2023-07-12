@@ -5,7 +5,14 @@ import { Button } from "../../components";
 
 import "./animationStyle.css";
 
-const ServicesComp = ({ data, setOpenModal, openModal, isAuth }) => {
+const ServicesComp = ({
+  data,
+  setOpenModal,
+  openModal,
+  isAuth,
+  comingSoonModal,
+  setcomingSoonModal,
+}) => {
   const [showHiddenContent, setShowHiddenContent] = useState(false);
   const navigate = useNavigate();
 
@@ -29,6 +36,11 @@ const ServicesComp = ({ data, setOpenModal, openModal, isAuth }) => {
             className="text-[12px] w-[80%] font-bold"
             onClick={() => {
               if (isAuth) {
+                if (!data?.link) {
+                  setShowHiddenContent(false);
+                  setcomingSoonModal(!comingSoonModal);
+                  return;
+                }
                 navigate(data?.link);
               } else {
                 setShowHiddenContent(false);

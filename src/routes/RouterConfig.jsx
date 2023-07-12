@@ -10,6 +10,7 @@ import {
   Profile,
   WasteDisposal,
   WasteRecycling,
+  ScheduleHistory,
 } from "../pages";
 import {
   HOME,
@@ -20,6 +21,7 @@ import {
   SIGNUP_SUCCESS,
   WASTE_DISPOSAL,
   WASTE_RECYCLING,
+  SCHEDULE_HISTORY,
 } from "./CONSTANTS";
 
 import AuthGaurd from "../authGaurd";
@@ -33,6 +35,7 @@ const RouterConfig = () => {
         <Route path={SERVICES} element={<Services />} />
         <Route path={WASTE_DISPOSAL} element={<WasteDisposal />} />
         <Route path={WASTE_RECYCLING} element={<WasteRecycling />} />
+        <Route path={SCHEDULE_HISTORY} element={<ScheduleHistory />} />
         <Route path={PROFILE} element={<Profile />} />
         <Route path={LOGIN} element={<Login />} />
         <Route path={SIGNUP} element={<Signup />} />

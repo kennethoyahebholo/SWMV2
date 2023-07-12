@@ -2,7 +2,6 @@
 import axios from "axios";
 
 import env from "../configs";
-import authHeader from "./auth-header";
 import {
   FORGOT_PASSWORD,
   LOGIN,

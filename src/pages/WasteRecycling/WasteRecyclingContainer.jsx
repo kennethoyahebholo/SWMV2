@@ -10,18 +10,20 @@ export const WasteRecyclingContainer = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      otherName: "",
-      gender: "",
-      address: "",
+      pickupAddress: "",
+      pickUpDate: "",
+      bin: "",
+      bag: "",
+      quantityOfBagsOrBins: "",
+      binQuantity: "",
     },
     validationSchema: Yup.object().shape({
-      firstName: Yup.string().required("First Name is required"),
-      lastName: Yup.string().required("Last Name is required"),
-      otherName: Yup.string().required("Other Name is required"),
-      gender: Yup.string().required("Gender is required"),
-      address: Yup.string().required("Address is required"),
+      pickupAddress: Yup.string().required("Pick Up Address is required"),
+      pickUpDate: Yup.string().required("Pick Up Date is required"),
+      bin: Yup.string().required("Bin is required"),
+      bag: Yup.string().required("Bag is required"),
+      quantityOfBagsOrBins: Yup.string().required("First Name is required"),
+      binQuantity: Yup.string().required("Bin Quantity is required"),
     }),
     onSubmit: (details, { resetForm }) => {
       console.log(details);

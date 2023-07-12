@@ -1,5 +1,6 @@
 // exports all services files from here
 export * from "./auth.service";
+export * from "./schedule-waste.service";
 // export * as ProductService from "./product.service";
 // export * as StockService from "./stocks.service";
 // export * as SaleOfferService from "./sale-offer.service";

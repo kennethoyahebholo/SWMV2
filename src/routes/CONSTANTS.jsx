@@ -3,6 +3,7 @@ export const HOME = "/";
 export const SERVICES = "/services";
 export const WASTE_DISPOSAL = "/services/waste-disposal";
 export const WASTE_RECYCLING = "/services/waste-recycling";
+export const SCHEDULE_HISTORY = "/services/schedule-history";
 export const PROFILE = "/profile";
 
 export const LOGIN = "/auth/login";

@@ -1,6 +1,9 @@
 import React from "react";
 import { Button, FormInput, FormSelect, Loader } from "../../components";
 
+// bin: "",
+// bag: "",
+
 const WasteRecycling = ({ formik, isLoading, genderOption }) => {
   return (
     <div className="w-full m-auto max-w-[1000px] px-4">
@@ -12,73 +15,84 @@ const WasteRecycling = ({ formik, isLoading, genderOption }) => {
           <FormInput
             size="lg"
             type="text"
-            id="firstName"
-            name="firstName"
-            value={formik.values.firstName}
-            touched={formik.touched.firstName}
+            id="pickupAddress"
+            name="pickupAddress"
+            value={formik.values.pickupAddress}
+            touched={formik.touched.pickupAddress}
             onChange={formik.handleChange}
-            errors={formik.errors.firstName}
+            errors={formik.errors.pickupAddress}
             className="w-full"
-            label="First Name"
+            label="Pickup Address"
           />
         </div>
         <div>
           <FormInput
             size="lg"
             type="text"
-            id="lastName"
-            name="lastName"
-            value={formik.values.lastName}
-            touched={formik.touched.lastName}
+            id="pickupAddress"
+            name="pickupAddress"
+            value={formik.values.pickupAddress}
+            touched={formik.touched.pickupAddress}
             onChange={formik.handleChange}
-            errors={formik.errors.lastName}
+            errors={formik.errors.pickupAddress}
             className="w-full"
-            label="Last Name"
+            label="Pickup Date"
           />
         </div>
         <div>
           <FormInput
             size="lg"
             type="text"
-            id="otherName"
-            name="otherName"
-            value={formik.values.otherName}
-            touched={formik.touched.otherName}
+            id="pickupAddress"
+            name="pickupAddress"
+            value={formik.values.pickupAddress}
+            touched={formik.touched.pickupAddress}
             onChange={formik.handleChange}
-            errors={formik.errors.otherName}
+            errors={formik.errors.pickupAddress}
             className="w-full"
-            label="Other Name"
-          />
-        </div>
-
-        <div>
-          <FormSelect
-            size="lg"
-            type="text"
-            options={genderOption}
-            id="gender"
-            name="gender"
-            placeholder="Select Gender"
-            // value={formik.values.gender}
-            touched={formik.touched.gender}
-            onChange={formik.handleChange}
-            errors={formik.errors.gender}
-            className="w-full "
-            label="Gender"
+            label="Bins"
           />
         </div>
         <div>
           <FormInput
             size="lg"
             type="text"
-            id="address"
-            name="address"
-            value={formik.values.address}
-            touched={formik.touched.address}
+            id="pickupAddress"
+            name="pickupAddress"
+            value={formik.values.pickupAddress}
+            touched={formik.touched.pickupAddress}
             onChange={formik.handleChange}
-            errors={formik.errors.address}
+            errors={formik.errors.pickupAddress}
             className="w-full"
-            label="Address"
+            label="Bags"
+          />
+        </div>
+        <div>
+          <FormInput
+            size="lg"
+            type="number"
+            id="quantityOfBagsOrBins"
+            name="quantityOfBagsOrBins"
+            value={formik.values.quantityOfBagsOrBins}
+            touched={formik.touched.quantityOfBagsOrBins}
+            onChange={formik.handleChange}
+            errors={formik.errors.quantityOfBagsOrBins}
+            className="w-full"
+            label="Quantity of Bins or Bags"
+          />
+        </div>
+        <div>
+          <FormInput
+            size="lg"
+            type="number"
+            id="quantityOfBagsOrBins"
+            name="quantityOfBagsOrBins"
+            value={formik.values.quantityOfBagsOrBins}
+            touched={formik.touched.quantityOfBagsOrBins}
+            onChange={formik.handleChange}
+            errors={formik.errors.quantityOfBagsOrBins}
+            className="w-full"
+            label="Bins Quantity"
           />
         </div>
         <div className="flex items-center justify-center py-10">
@@ -88,7 +102,7 @@ const WasteRecycling = ({ formik, isLoading, genderOption }) => {
             size="lg"
             className="text-[12px]"
           >
-            {isLoading ? <Loader /> : "Update"}
+            {isLoading ? <Loader /> : "Schedule Appointment"}
           </Button>
         </div>
       </form>

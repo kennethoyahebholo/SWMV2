@@ -34,7 +34,8 @@ export const login = createAsyncThunk(
       return resp;
     } catch (error) {
       const message = formatErrorResponse(error);
-      toast.error(message);
+      console.log("here", message);
+      toast.error("Invalid Credentials! Sign Up");
       return thunkAPI.rejectWithValue(message);
     }
   }

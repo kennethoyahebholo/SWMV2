@@ -4,10 +4,12 @@ import { Modal } from "../../components";
 import { SWM_USER_DATA } from "../../services/CONSTANTS";
 import { ServiceDetails } from "../../utils/serviceDetails";
 import NotAllowed from "./NotAllowed";
+import ComingSoon from "./ComingSoon";
 import ServicesComp from "./ServicesComp";
 
 const ServicesView = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [comingSoonModal, setcomingSoonModal] = useState(false);
   const { pathname } = useLocation();
   const data = localStorage.getItem(SWM_USER_DATA);
   const [isAuth, setIsAuth] = useState(true);
@@ -34,6 +36,8 @@ const ServicesView = () => {
               data={data}
               openModal={openModal}
               setOpenModal={setOpenModal}
+              comingSoonModal={comingSoonModal}
+              setcomingSoonModal={setcomingSoonModal}
               isAuth={isAuth}
             />
           );
@@ -43,6 +47,12 @@ const ServicesView = () => {
         <Modal
           content={<NotAllowed title="education" />}
           setOpenModal={() => setOpenModal(false)}
+        />
+      )}
+      {comingSoonModal && (
+        <Modal
+          content={<ComingSoon />}
+          setOpenModal={() => setcomingSoonModal(false)}
         />
       )}
     </div>
