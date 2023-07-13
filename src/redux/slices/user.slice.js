@@ -46,9 +46,9 @@ export const updateUserDetails = createAsyncThunk(
 
 export const verifyEmail = createAsyncThunk(
   "emailVerification/verifyEmail",
-  async (email) => {
+  async (userId) => {
     try {
-      const response = await VerifyEmail(email);
+      const response = await VerifyEmail(userId);
       return response.data;
     } catch (err) {
       throw new Error(err.response.data.error);

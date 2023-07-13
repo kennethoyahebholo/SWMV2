@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
+  CONTACT_US,
   FORGOT_PASSWORD,
   HOME,
   LOGIN,
@@ -25,6 +26,7 @@ const AuthGaurd = ({ children }) => {
     HOME,
     SERVICES,
     SIGNUP_SUCCESS,
+    CONTACT_US,
   ].includes(pathname);
   const handleError = useCallback(() => {
     navigate(LOGIN);

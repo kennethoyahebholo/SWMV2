@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { HOME, LOGIN, PROFILE, SERVICES } from "../../../routes/CONSTANTS";
+import {
+  CONTACT_US,
+  HOME,
+  LOGIN,
+  PROFILE,
+  SERVICES,
+} from "../../../routes/CONSTANTS";
 import { SWMimages } from "../../../assets";
 import { Button } from "../../widgets";
 import NavLink from "./NavLink";
@@ -47,6 +53,9 @@ const Navbar = ({ auth, breadCrumbs, breadCrumbsLinks, customStyle }) => {
         <div className="inline-flex lg:inline-flex items-center space-x-5 md:space-x-20">
           <NavLink className="inline-flex" to={SERVICES}>
             Services
+          </NavLink>
+          <NavLink className="inline-flex" to={CONTACT_US}>
+            Help
           </NavLink>
           <div className="flex items-center space-x-10">
             {auth ? (

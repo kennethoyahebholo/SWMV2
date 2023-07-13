@@ -4,6 +4,7 @@ import {
   ErrorPage,
   Home,
   Services,
+  ContactUs,
   Login,
   Signup,
   AccoutSuccessfullyCreated,
@@ -24,6 +25,7 @@ import {
   WASTE_RECYCLING,
   SCHEDULE_HISTORY,
   FORGOT_PASSWORD,
+  CONTACT_US,
 } from "./CONSTANTS";
 
 import AuthGaurd from "../authGaurd";
@@ -35,6 +37,7 @@ const RouterConfig = () => {
         {/* Public routes should be placed in here */}
         <Route path={HOME} element={<Home />} />
         <Route path={SERVICES} element={<Services />} />
+        <Route path={CONTACT_US} element={<ContactUs />} />
         <Route path={WASTE_DISPOSAL} element={<WasteDisposal />} />
         <Route path={WASTE_RECYCLING} element={<WasteRecycling />} />
         <Route path={SCHEDULE_HISTORY} element={<ScheduleHistory />} />

@@ -105,7 +105,7 @@ export const ProfileContainer = () => {
   }, [UpdateEmploymentStatus]);
 
   const handleVerifyEmail = () => {
-    void dispatch(verifyEmail(user?.email))
+    void dispatch(verifyEmail(user?.id))
       .unwrap()
       .then((res) => {
         console.log(res);

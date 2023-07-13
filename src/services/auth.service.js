@@ -19,7 +19,7 @@ export const Signin = async ({ phoneNumber, password, email }) => {
     .then((res) => {
       const data = res.data;
       if (data) {
-        localStorage.setItem(SWM_USER_DATA, JSON.stringify(data));
+        localStorage.setItem(SWM_USER_DATA, JSON.stringify(data?.token));
       }
       return res;
     });

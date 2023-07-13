@@ -143,7 +143,7 @@ const WasteRecycling = ({
                   setPod(date);
                   formik.setFieldValue(
                     "pickUpDate",
-                    moment(date).format("DD-MM-YYYY")
+                    moment(date).format("YYYY-MM-DD")
                   );
                 }}
                 errors={formik.errors.pickUpDate}

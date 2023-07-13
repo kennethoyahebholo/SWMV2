@@ -39,7 +39,7 @@ const AppDatePicker = ({
     }
   };
   const error = touched !== undefined && errors !== undefined;
-  const parsedValue = value ? moment(value, "DD-MM-YYYY").toDate() : null;
+  const parsedValue = value ? moment(value, "YYYY-MM-DD").toDate() : null;
   const CustomInput = ({ value, onClick }) => (
     <div className="relative w-full">
       <input
@@ -84,7 +84,7 @@ const AppDatePicker = ({
       <DatePicker
         selected={parsedValue}
         onChange={onChange}
-        dateFormat={dateFormat || "dd-MM-yyyy"}
+        dateFormat={dateFormat || "yyyy-MM-dd"}
         maxDate={new Date(maxDate)}
         minDate={new Date(minDate)}
         showYearDropdown

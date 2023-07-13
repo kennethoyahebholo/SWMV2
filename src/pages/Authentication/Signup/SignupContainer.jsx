@@ -28,7 +28,7 @@ export const SignupContainer = () => {
         .required("Email is required"),
       phone: Yup.string()
         .required("Phone number is required")
-        .matches(/^\+?(?:\d){10,14}$/, "Invalid phone number"),
+        .matches(/^\+?(?:\d){10,13}$/, "Invalid phone number"),
       password: Yup.string()
         .required("Password is required")
         .matches(

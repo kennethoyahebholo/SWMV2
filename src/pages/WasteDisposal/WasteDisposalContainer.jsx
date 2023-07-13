@@ -38,10 +38,10 @@ export const WasteDisposalContainer = () => {
       void dispatch(
         scheduleWasteDisposal({
           binRequestDto: {
-            requestStatus: details?.binRequest,
-            binQuantity: details?.binQuantity,
+            requestStatus: details?.binRequest === "1" ? true : false,
+            binQuantity: Number(details?.binQuantity),
           },
-          refLocationId: details?.location,
+          refLocationId: Number(details?.location),
           scheduleDto: {
             pickupAddress: details?.pickupAddress,
           },

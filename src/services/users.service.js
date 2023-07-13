@@ -9,6 +9,8 @@ import {
 
 const userToken = JSON.parse(localStorage.getItem(SWM_USER_DATA));
 
+console.log(userToken, "email");
+
 export const GetUserByEmail = async (email) => {
   try {
     const response = await axios.get(
@@ -49,10 +51,10 @@ export const UpdateUserDetails = async ({
   }
 };
 
-export const VerifyEmail = async (email) => {
+export const VerifyEmail = async (userId) => {
   try {
     const response = await axios.post(
-      `${env.API_BASE_URL}/${VERIFY_EMAIL}/${email}`,
+      `${env.API_BASE_URL}/${VERIFY_EMAIL}/${userId}`,
       {
         headers: {
           Authorization: `Bearer ${userToken}`,
