@@ -105,6 +105,19 @@ const Input = ({
     );
   }
 
+  if (props.type === "textarea") {
+    return (
+      <div className="relative w-full">
+        <textarea
+          {...props}
+          className={`${getSize(size)} ${className} ${
+            size === "sm" && "pl-[20px]"
+          } text-base bg-white placeholder:text-[#8692A6] border-[1.5px] border-[#333333] rounded-[6px] focus:border-[#004B9D] outline-none`}
+        />
+      </div>
+    );
+  }
+
   if (end !== undefined) {
     return (
       <div

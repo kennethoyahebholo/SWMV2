@@ -92,7 +92,7 @@ const ContactUsView = ({
         <div>
           <FormInput
             size="lg"
-            type="text"
+            type="textarea"
             id="description"
             name="description"
             value={formik.values.description}
