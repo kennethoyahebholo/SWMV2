@@ -72,9 +72,14 @@ export const ScheduleWasteRecycling = async ({
     });
 };
 
-export const getAllUserSchedule = async (userId) => {
+export const GetAllUserSchedule = async (userId) => {
   const response = await axios.get(
-    `${env.API_BASE_URL}${ALL_WASTE_SCHEDULE}?id=${userId}`
+    `${env.API_BASE_URL}/${ALL_WASTE_SCHEDULE}/${userId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    }
   );
   return response.data;
 };

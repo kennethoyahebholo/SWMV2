@@ -7,7 +7,7 @@ import { SERVICES } from "../../../routes/CONSTANTS";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../redux/slices/auth.slice";
 import { useQuery } from "../../../hooks";
 import { getUserByEmail } from "../../../redux/slices/user.slice";
@@ -15,11 +15,13 @@ import { SWM_USER_EMAIL } from "../../../services/CONSTANTS";
 import LoginOptionComp from "./LoginOptionComp";
 
 import "./styles.css";
+import { getAllUserSchedule } from "../../../redux/slices/userSchedule.slice";
 
 export const LoginContainer = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedLoginOption, setSelectedLoginOption] = useState("");
+  const { user, loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const query = useQuery();
@@ -67,8 +69,6 @@ export const LoginContainer = () => {
           console.log(resp);
           const email = JSON.parse(resp?.config?.data)?.email;
           const phone = JSON.parse(resp?.config?.data)?.phoneNumber;
-          dispatch(getUserByEmail(email || phone));
-          localStorage.setItem(SWM_USER_EMAIL, JSON.stringify(email || phone));
           const redirect = query.get("redirect");
           if (redirect) {
             //  redirect to absolute URL - possibly initiated from VC app
@@ -78,7 +78,14 @@ export const LoginContainer = () => {
             navigate(`../${redirect}`, { replace: true });
           } else if (resp?.status === 200 || resp?.status === 201) {
             toast.success("login successfully, navigating to services");
+            dispatch(getUserByEmail(email || phone));
+            localStorage.setItem(
+              SWM_USER_EMAIL,
+              JSON.stringify(email || phone)
+            );
+            dispatch(getAllUserSchedule(user?.id));
             navigate(SERVICES);
+            setIsLoading(false);
           }
           setIsLoading(false);
         })

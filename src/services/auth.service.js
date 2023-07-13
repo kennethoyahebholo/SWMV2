@@ -3,12 +3,15 @@ import axios from "axios";
 
 import env from "../configs";
 import {
+  CHANGE_PASSWORD,
   FORGOT_PASSWORD,
   LOGIN,
   LOG_OUT,
   REGISTER,
   SWM_USER_DATA,
 } from "./CONSTANTS";
+
+const userToken = JSON.parse(localStorage.getItem(SWM_USER_DATA));
 
 export const Signin = async ({ phoneNumber, password, email }) => {
   const loginData = phoneNumber
@@ -48,6 +51,22 @@ export const ForgotPassword = async (details) => {
   const response = await axios.post(
     `${env.API_BASE_URL}/${FORGOT_PASSWORD}`,
     details
+  );
+  return response.data;
+};
+
+export const ChangePassword = async ({ email, password }) => {
+  const response = await axios.get(
+    `${env.API_BASE_URL}/${CHANGE_PASSWORD}`,
+    {
+      email,
+      password,
+    },
+    {
+      header: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    }
   );
   return response.data;
 };

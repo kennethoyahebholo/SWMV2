@@ -13,7 +13,6 @@ const FormInput = ({
   handleVerifyEmail,
   ...rest
 }) => {
-  const error = touched !== undefined && errors !== undefined;
   return (
     <div className="w-full">
       <div className="space-y-1">
@@ -49,11 +48,11 @@ const FormInput = ({
           size={size}
           {...rest}
           className={`${
-            error ? "border-red-700 text-red-700 placeholder:text-red-700" : ""
+            errors ? "border-red-700 text-red-700 placeholder:text-red-700" : ""
           } w-full`}
         />
       </div>
-      {error && <p className="text-red-700 text-base">{errors}</p>}
+      {errors && <p className="text-red-700 text-base">{errors}</p>}
     </div>
   );
 };

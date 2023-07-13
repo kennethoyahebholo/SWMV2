@@ -10,13 +10,17 @@ import {
   SIGNUP_SUCCESS,
 } from "./routes/CONSTANTS";
 import { SWM_USER_DATA, SWM_USER_EMAIL } from "./services/CONSTANTS";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserByEmail } from "./redux/slices/user.slice";
+import { getAllUserSchedule } from "./redux/slices/userSchedule.slice";
 
 const AuthGaurd = ({ children }) => {
   const dispatch = useDispatch();
   const userToken = JSON.parse(localStorage.getItem(SWM_USER_DATA));
   const userEmail = JSON.parse(localStorage.getItem(SWM_USER_EMAIL));
+  const { user, loading, error } = useSelector((state) => state.user);
+
+  console.log(user, "user Afa na");
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const shouldGetProfile = ![
@@ -44,6 +48,7 @@ const AuthGaurd = ({ children }) => {
     if (localStorage?.SWM_USER_DATA && shouldGetProfile) {
       if (userToken) {
         dispatch(getUserByEmail(userEmail));
+        dispatch(getAllUserSchedule(user?.id));
       }
     }
   }, [localStorage?.SWM_USER_DATA, shouldGetProfile]);

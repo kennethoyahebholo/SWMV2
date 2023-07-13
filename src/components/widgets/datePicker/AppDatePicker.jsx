@@ -38,7 +38,6 @@ const AppDatePicker = ({
         return "p-1 h-10";
     }
   };
-  const error = touched !== undefined && errors !== undefined;
   const parsedValue = value ? moment(value, "YYYY-MM-DD").toDate() : null;
   const CustomInput = ({ value, onClick }) => (
     <div className="relative w-full">
@@ -46,7 +45,9 @@ const AppDatePicker = ({
         type="text"
         className={`${getSize(size)} ${className} ${
           size === "sm" && "pl-[20px]"
-        } text-base bg-white placeholder:text-[#8692A6] border-[1.5px] border-[#333333] rounded-[6px] focus:border-[#004B9D] outline-none`}
+        } text-base bg-white placeholder:text-[#8692A6] border-[1.5px] border-[#333333] rounded-[6px] focus:border-[#004B9D] outline-none ${
+          errors ? "border-red-700 text-red-700 placeholder:text-red-700" : ""
+        } `}
         value={value}
         onClick={onClick}
         placeholder="Select date"
@@ -93,7 +94,7 @@ const AppDatePicker = ({
         customInput={<CustomInput />}
         className="react-datepicker-wrapper"
       />
-      {error && <p className="text-red-700 text-base">{errors}</p>}
+      {errors && <p className="text-red-700 text-base">{errors}</p>}
     </div>
   );
 };

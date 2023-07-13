@@ -1,7 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { toast } from "react-toastify";
-import { Register, Signin, ForgotPassword, Logout } from "../../services";
+import {
+  Register,
+  Signin,
+  ForgotPassword,
+  Logout,
+  ChangePassword,
+} from "../../services";
 import { formatErrorResponse } from "../../utils/formatErrorResponse";
 import { SWM_USER_DATA } from "../../services/CONSTANTS";
 
@@ -64,6 +70,21 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   }
 });
 
+export const changePassword = createAsyncThunk(
+  "password/changePassword",
+  async (email, password, thunkAPI) => {
+    try {
+      const response = await ChangePassword({
+        email,
+        password,
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const initialState = user
   ? { isLoggedIn: true, user: null, isLoading: false, passwordReset: false }
   : { isLoggedIn: false, user: null, isLoading: false, passwordReset: false };
@@ -119,6 +140,20 @@ const authSlice = createSlice({
     // builder.addCase(resetPassword.rejected, (state) => {
     //   state.isLoading = false;
     // });
+    //change password
+    builder
+      .addCase(changePassword.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(changePassword.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(changePassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
     // logout
     builder.addCase(logout.pending, (state) => {
       state.isLoading = true;

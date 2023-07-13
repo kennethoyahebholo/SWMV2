@@ -4,6 +4,7 @@ export const LOGIN = "auth/login";
 export const LOG_OUT = "auth/logout";
 
 export const FORGOT_PASSWORD = "Authentication/forgot-password";
+export const CHANGE_PASSWORD = "profile/changePassword";
 
 export const WASTE_DISPOSAL = "schedule/waste/pickUp";
 export const WASTE_RECYCLING = "schedule/recycle/pickUp";

@@ -11,12 +11,61 @@ import {
   verifyEmail,
 } from "../../redux/slices/user.slice";
 import { SWM_USER_EMAIL } from "../../services/CONSTANTS";
+import { changePassword } from "../../redux/slices/auth.slice";
 
 export const ProfileContainer = () => {
   const { user, loading, error } = useSelector((state) => state.user);
   const [isLoading, setIsLoading] = useState(false);
+  const [isCpLoading, setIsCpLoading] = useState(false);
   const userEmail = JSON.parse(localStorage.getItem(SWM_USER_EMAIL));
   const dispatch = useDispatch();
+
+  const passWordFormik = useFormik({
+    initialValues: {
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: Yup.object().shape({
+      password: Yup.string()
+        .required("Password is required")
+        .matches(
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+          "Weak Password. Password must have at least: 1 upper case, 1 digit, 1 special character, Minimum eight in length"
+        ),
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref("password"), null], "Passwords must match")
+        .required("Please confirm your password"),
+    }),
+    onSubmit: (details) => {
+      setIsCpLoading(true);
+      void dispatch(
+        changePassword({
+          email: user?.email,
+          password: details.password,
+        })
+      )
+        .unwrap()
+        .then((res) => {
+          console.log(res);
+          if (res?.statusCodeValue === 400) {
+            toast.error(res.body);
+            setIsCpLoading(false);
+            return;
+          }
+          if (res) {
+            toast.success(res);
+            dispatch(getUserByEmail(userEmail));
+            setIsCpLoading(false);
+          }
+          setIsCpLoading(false);
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          setIsCpLoading(false);
+          console.log(error);
+        });
+    },
+  });
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -35,7 +84,6 @@ export const ProfileContainer = () => {
     }),
     onSubmit: (details, { resetForm }) => {
       setIsLoading(true);
-
       void dispatch(
         updateUserDetails({
           email: details.email,
@@ -134,6 +182,8 @@ export const ProfileContainer = () => {
         genderOption={genderOption}
         user={user}
         handleVerifyEmail={handleVerifyEmail}
+        passWordFormik={passWordFormik}
+        isCpLoading={isCpLoading}
       />
     </Landing>
   );

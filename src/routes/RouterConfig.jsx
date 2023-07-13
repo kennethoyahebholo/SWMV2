@@ -26,6 +26,7 @@ import {
   SCHEDULE_HISTORY,
   FORGOT_PASSWORD,
   CONTACT_US,
+  RESET_PASSWORD,
 } from "./CONSTANTS";
 
 import AuthGaurd from "../authGaurd";

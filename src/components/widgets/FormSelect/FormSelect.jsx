@@ -12,7 +12,6 @@ const FormSelect = ({
   message,
   ...rest
 }) => {
-  const error = touched !== undefined && errors !== undefined;
   return (
     <div className="space-y-2 w-full">
       <div className="flex items-center justify-between">
@@ -47,7 +46,7 @@ const FormSelect = ({
         placeholder={placeholder}
         {...rest}
         className={`${
-          error ? "border-red-700 text-red-700 placeholder:text-red-700" : ""
+          errors ? "border-red-700 text-red-700 placeholder:text-red-700" : ""
         } w-full`}
       />
       {errors && <p className="text-red-700 text-base ">{errors}</p>}
