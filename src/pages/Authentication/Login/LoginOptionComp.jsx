@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { SWMEmailArt, SWMPhoneArt } from "../../../components/icons";
+import { FORGOT_PASSWORD, SIGNUP } from "../../../routes/CONSTANTS";
 
 const LoginOptionComp = ({ setSelectedLoginOption }) => {
   return (
     <div className="w-full m-auto max-w-[1000px] px-4">
-      <h1 className="text-center text-[20px] font-bold mb-[1rem] mt-0">
+      <div className="text-center text-[20px] font-bold mb-[1rem] mt-0">
         <h1 className="mb-5 text-[20px]">How do you wish to login</h1>
         <div className="grid grid-cols-3 items-center">
           <div
@@ -27,7 +29,18 @@ const LoginOptionComp = ({ setSelectedLoginOption }) => {
             </div>
           </div>
         </div>
-      </h1>
+      </div>
+      <p className="font-['Montserrat'] text-[14px] text-[#666666] text-center font-bold mb-6">
+        Don't have an account?{" "}
+        <Link to={SIGNUP}>
+          <span className="text-secondary">Sign Up</span>
+        </Link>
+      </p>
+      <p className="font-['Montserrat'] text-[14px] text-secondary text-center font-bold">
+        <Link to={FORGOT_PASSWORD}>
+          <span>Forgot Password?</span>
+        </Link>
+      </p>
     </div>
   );
 };
