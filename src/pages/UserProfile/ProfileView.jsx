@@ -1,7 +1,13 @@
 import React from "react";
 import { Button, FormInput, FormSelect, Loader } from "../../components";
 
-const ProfileView = ({ formik, isLoading, genderOption, user }) => {
+const ProfileView = ({
+  formik,
+  isLoading,
+  genderOption,
+  user,
+  handleVerifyEmail,
+}) => {
   return (
     <div className="w-full m-auto max-w-[1000px] px-4">
       <h1 className="text-center text-[35px] font-bold mb-[1rem] mt-3">
@@ -19,9 +25,10 @@ const ProfileView = ({ formik, isLoading, genderOption, user }) => {
             onChange={formik.handleChange}
             errors={formik.errors.email}
             className="w-full"
+            handleVerifyEmail={handleVerifyEmail}
             label="Email"
             required={
-              !user?.emailVerificationStatus ? "Email is not verified" : ""
+              !user?.emailVerificationStatus ? `Email is not verified` : ""
             }
             optional={user?.emailVerificationStatus ? "Email is verified" : ""}
           />

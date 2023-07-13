@@ -10,6 +10,7 @@ const FormInput = ({
   size,
   optional,
   end,
+  handleVerifyEmail,
   ...rest
 }) => {
   const error = touched !== undefined && errors !== undefined;
@@ -31,7 +32,15 @@ const FormInput = ({
             <small className="text-[#009D49] text-[10px]">{optional}</small>
           )}
           {required && (
-            <small className="text-red-700 text-[10px]">{required}</small>
+            <small className="text-red-700 text-[10px]">
+              {required}{" "}
+              <span
+                onClick={handleVerifyEmail}
+                className="underline cursor-pointer"
+              >
+                Click here to verify your email
+              </span>
+            </small>
           )}
         </div>
 

@@ -1,6 +1,13 @@
 import axios from "axios";
 import { env } from "../configs/environment.config";
-import { GET_USER, UPDATE_USER } from "./CONSTANTS";
+import {
+  GET_USER,
+  SWM_USER_DATA,
+  UPDATE_USER,
+  VERIFY_EMAIL,
+} from "./CONSTANTS";
+
+const userToken = JSON.parse(localStorage.getItem(SWM_USER_DATA));
 
 export const GetUserByEmail = async (email) => {
   try {
@@ -34,6 +41,22 @@ export const UpdateUserDetails = async ({
         phoneNumber,
         gender,
         address,
+      }
+    );
+    return response;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const VerifyEmail = async (email) => {
+  try {
+    const response = await axios.post(
+      `${env.API_BASE_URL}/${VERIFY_EMAIL}/${email}`,
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
       }
     );
     return response;

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getUserByEmail,
   updateUserDetails,
+  verifyEmail,
 } from "../../redux/slices/user.slice";
 import { SWM_USER_EMAIL } from "../../services/CONSTANTS";
 
@@ -103,6 +104,28 @@ export const ProfileContainer = () => {
     UpdateEmploymentStatus();
   }, [UpdateEmploymentStatus]);
 
+  const handleVerifyEmail = () => {
+    void dispatch(verifyEmail(user?.email))
+      .unwrap()
+      .then((res) => {
+        console.log(res);
+        if (res?.statusCodeValue === 400) {
+          toast.error(res.body);
+          setIsLoading(false);
+          return;
+        }
+        if (res) {
+          toast.success(res);
+          dispatch(getUserByEmail(userEmail));
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error);
+      });
+  };
+
   return (
     <Landing>
       <ProfileView
@@ -110,6 +133,7 @@ export const ProfileContainer = () => {
         isLoading={isLoading}
         genderOption={genderOption}
         user={user}
+        handleVerifyEmail={handleVerifyEmail}
       />
     </Landing>
   );

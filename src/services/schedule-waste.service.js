@@ -4,9 +4,12 @@ import env from "../configs";
 
 import {
   ALL_WASTE_SCHEDULE,
+  SWM_USER_DATA,
   WASTE_DISPOSAL,
   WASTE_RECYCLING,
 } from "./CONSTANTS";
+
+const userToken = JSON.parse(localStorage.getItem(SWM_USER_DATA));
 
 export const ScheduleWasteDisposal = async ({
   binRequestDto,
@@ -15,11 +18,19 @@ export const ScheduleWasteDisposal = async ({
   userId,
 }) => {
   return await axios
-    .post(`${env.API_BASE_URL}/${WASTE_DISPOSAL}/${userId}`, {
-      binRequestDto,
-      refLocationId,
-      scheduleDto,
-    })
+    .post(
+      `${env.API_BASE_URL}/${WASTE_DISPOSAL}/${userId}`,
+      {
+        binRequestDto,
+        refLocationId,
+        scheduleDto,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    )
     .then((res) => {
       return res;
     });
@@ -38,16 +49,24 @@ export const ScheduleWasteRecycling = async ({
   categoryId,
 }) => {
   return await axios
-    .post(`${env.API_BASE_URL}/${WASTE_RECYCLING}/${userId}/${categoryId}`, {
-      pickupAddress,
-      pickUpDate,
-      bin,
-      bag,
-      quantityOfBagsOrBins,
-      binQuantity,
-      refLocationId,
-      requestStatus,
-    })
+    .post(
+      `${env.API_BASE_URL}/${WASTE_RECYCLING}/${userId}/${categoryId}`,
+      {
+        pickupAddress,
+        pickUpDate,
+        bin,
+        bag,
+        quantityOfBagsOrBins,
+        binQuantity,
+        refLocationId,
+        requestStatus,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    )
     .then((res) => {
       return res;
     });

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GetUserByEmail, UpdateUserDetails } from "../../services";
+import { GetUserByEmail, UpdateUserDetails, VerifyEmail } from "../../services";
 
 // Async thunk
 export const getUserByEmail = createAsyncThunk(
@@ -44,6 +44,18 @@ export const updateUserDetails = createAsyncThunk(
   }
 );
 
+export const verifyEmail = createAsyncThunk(
+  "emailVerification/verifyEmail",
+  async (email) => {
+    try {
+      const response = await VerifyEmail(email);
+      return response.data;
+    } catch (err) {
+      throw new Error(err.response.data.error);
+    }
+  }
+);
+
 // Slice
 const userSlice = createSlice({
   name: "user",
@@ -81,6 +93,22 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(updateUserDetails.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+
+    //verify email
+    builder
+      .addCase(verifyEmail.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(verifyEmail.fulfilled, (state, action) => {
+        state.data = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(verifyEmail.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

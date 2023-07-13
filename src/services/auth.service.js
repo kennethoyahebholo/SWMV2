@@ -8,15 +8,14 @@ import {
   LOG_OUT,
   REGISTER,
   SWM_USER_DATA,
-  SWM_USER_EMAIL,
 } from "./CONSTANTS";
 
-export const Signin = async ({ email, password }) => {
+export const Signin = async ({ phoneNumber, password, email }) => {
+  const loginData = phoneNumber
+    ? { phoneNumber, password }
+    : { email, password };
   return await axios
-    .post(`${env.API_BASE_URL}/${LOGIN}`, {
-      email,
-      password,
-    })
+    .post(`${env.API_BASE_URL}/${LOGIN}`, loginData)
     .then((res) => {
       const data = res.data;
       if (data) {

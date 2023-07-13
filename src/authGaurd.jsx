@@ -6,6 +6,7 @@ import {
   LOGIN,
   SERVICES,
   SIGNUP,
+  SIGNUP_SUCCESS,
 } from "./routes/CONSTANTS";
 import { SWM_USER_DATA, SWM_USER_EMAIL } from "./services/CONSTANTS";
 import { useDispatch } from "react-redux";
@@ -23,6 +24,7 @@ const AuthGaurd = ({ children }) => {
     FORGOT_PASSWORD,
     HOME,
     SERVICES,
+    SIGNUP_SUCCESS,
   ].includes(pathname);
   const handleError = useCallback(() => {
     navigate(LOGIN);
