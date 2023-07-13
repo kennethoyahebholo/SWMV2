@@ -72,7 +72,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 
 export const changePassword = createAsyncThunk(
   "password/changePassword",
-  async (email, password, thunkAPI) => {
+  async ({ email, password }, thunkAPI) => {
     try {
       const response = await ChangePassword({
         email,

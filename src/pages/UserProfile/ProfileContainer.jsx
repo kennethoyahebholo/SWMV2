@@ -38,10 +38,11 @@ export const ProfileContainer = () => {
     }),
     onSubmit: (details) => {
       setIsCpLoading(true);
+      console.log(details, "CP", user?.email);
       void dispatch(
         changePassword({
           email: user?.email,
-          password: details.password,
+          password: details?.password,
         })
       )
         .unwrap()

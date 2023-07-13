@@ -56,17 +56,9 @@ export const ForgotPassword = async (details) => {
 };
 
 export const ChangePassword = async ({ email, password }) => {
-  const response = await axios.get(
-    `${env.API_BASE_URL}/${CHANGE_PASSWORD}`,
-    {
-      email,
-      password,
-    },
-    {
-      header: {
-        Authorization: `Bearer ${userToken}`,
-      },
-    }
-  );
+  const response = await axios.get(`${env.API_BASE_URL}/${CHANGE_PASSWORD}`, {
+    email,
+    password,
+  });
   return response.data;
 };

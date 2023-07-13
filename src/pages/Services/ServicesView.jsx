@@ -6,8 +6,9 @@ import { ServiceDetails } from "../../utils/serviceDetails";
 import NotAllowed from "./NotAllowed";
 import ComingSoon from "./ComingSoon";
 import ServicesComp from "./ServicesComp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserEmail } from "../../redux/slices/userEmail.slice";
+import { GetAllUserSchedule } from "../../services";
 
 const ServicesView = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -16,7 +17,17 @@ const ServicesView = () => {
   const data = localStorage.getItem(SWM_USER_DATA);
   const [isAuth, setIsAuth] = useState(true);
 
-  // const { user, loading, error } = useSelector((state) => state.user);
+  const { user, loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const getSchedule = useCallback(() => {
+    if (user) {
+      dispatch(GetAllUserSchedule(user?.id));
+    }
+  }, [user]);
+
+  useEffect(() => {
+    getSchedule();
+  }, [getSchedule]);
 
   const getActiveUser = useCallback(() => {
     if (!data) {

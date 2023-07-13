@@ -83,7 +83,7 @@ export const LoginContainer = () => {
               SWM_USER_EMAIL,
               JSON.stringify(email || phone)
             );
-            dispatch(getAllUserSchedule(user?.id));
+            // dispatch(getAllUserSchedule(user?.id));
             navigate(SERVICES);
             setIsLoading(false);
           }
