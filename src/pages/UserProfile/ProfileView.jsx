@@ -191,142 +191,153 @@ const ProfileView = ({
         </div>
       </form>
       <hr />
-      <form onClick={passWordFormik.handleSubmit}>
+      <div>
         <h1 className="text-center text-[35px] font-bold mb-[1rem] mt-3">
           Change your password
         </h1>
-        <div>
-          <FormInput
-            size="lg"
-            type="password"
-            id="password"
-            name="password"
-            value={passWordFormik.values.password}
-            // placeholder="Enter email address"
-            onChange={passWordFormik.handleChange}
-            errors={passWordFormik.errors.password}
-            touched={passWordFormik.touched.password}
-            className="w-full"
-            label="Password"
-          />
-        </div>
-        <div className="px-6">
-          <div className="flex items-center mb-1 space-x-6">
-            <p
-              htmlFor="passwordStrength"
-              className=" block text-gray-700 font-semibold mb-2 text-[10px]"
-            >
-              Password Strength:
-            </p>
-            <div className="relative w-[15rem] h-2 bg-gray-300 rounded-full">
-              <div
-                className={`absolute top-0 left-0 h-2 rounded-full ${getPasswordStrength(
-                  passWordFormik.values.password
-                )}`}
-                style={{
-                  width: `${
-                    ((progressBarWidth.current ||
-                      passWordFormik.values.password?.length) /
-                      20) *
-                    100
-                  }%`,
-                }}
-              ></div>
+        <form onSubmit={passWordFormik.handleSubmit}>
+          <div>
+            <FormInput
+              size="lg"
+              type="password"
+              id="password"
+              name="password"
+              value={passWordFormik.values.password}
+              // placeholder="Enter email address"
+              onChange={passWordFormik.handleChange}
+              errors={passWordFormik.errors.password}
+              touched={passWordFormik.touched.password}
+              className="w-full"
+              label="Password"
+            />
+          </div>
+          <div className="px-6">
+            <div className="flex items-center mb-1 space-x-6">
+              <p
+                htmlFor="passwordStrength"
+                className=" block text-gray-700 font-semibold mb-2 text-[10px]"
+              >
+                Password Strength:
+              </p>
+              <div className="relative w-[15rem] h-2 bg-gray-300 rounded-full">
+                <div
+                  className={`absolute top-0 left-0 h-2 rounded-full ${getPasswordStrength(
+                    passWordFormik.values.password
+                  )}`}
+                  style={{
+                    width: `${
+                      ((progressBarWidth.current ||
+                        passWordFormik.values.password?.length) /
+                        20) *
+                      100
+                    }%`,
+                  }}
+                ></div>
+              </div>
+            </div>
+            <div className="progress-bg">
+              {/* validation tracker */}
+              <main className="text-[12px] font-['Lato'] space-y-2">
+                <div
+                  className={lengthValidated ? "validated" : "not-validated"}
+                >
+                  {lengthValidated.current ? (
+                    <span className="mr-[8px] text-[#0f0]">
+                      <Icon icon={arrows_circle_check} />
+                    </span>
+                  ) : (
+                    <span className="mr-[8px]">
+                      <Icon icon={arrows_exclamation} />
+                    </span>
+                  )}
+                  contains at least 8 characters
+                </div>
+                <div className={lowerValidated ? "validated" : "not-validated"}>
+                  {lowerValidated.current ? (
+                    <span className="mr-[14px]">
+                      <Icon
+                        icon={arrows_circle_check}
+                        className="text-[#0f0]"
+                      />
+                    </span>
+                  ) : (
+                    <span className="mr-[14px]">
+                      <Icon icon={arrows_exclamation} />
+                    </span>
+                  )}
+                  contains at least one lowercase letter
+                </div>
+                <div className={upperValidated ? "validated" : "not-validated"}>
+                  {upperValidated.current ? (
+                    <span className="mr-[14px] text-[#0f0]">
+                      <Icon icon={arrows_circle_check} />
+                    </span>
+                  ) : (
+                    <span className="mr-[14px]">
+                      <Icon icon={arrows_exclamation} />
+                    </span>
+                  )}
+                  contains at least one uppercase
+                </div>
+                <div
+                  className={numberValidated ? "validated" : "not-validated"}
+                >
+                  {numberValidated.current ? (
+                    <span className="mr-[8px] text-[#0f0]">
+                      <Icon icon={arrows_circle_check} />
+                    </span>
+                  ) : (
+                    <span className="mr-[8px]">
+                      <Icon icon={arrows_exclamation} />
+                    </span>
+                  )}
+                  contains at least one number
+                </div>
+                <div
+                  className={specialValidated ? "validated" : "not-validated"}
+                >
+                  {specialValidated.current ? (
+                    <span className="mr-[14px] text-[#0f0]">
+                      <Icon icon={arrows_circle_check} />
+                    </span>
+                  ) : (
+                    <span className="mr-[14px]">
+                      <Icon icon={arrows_exclamation} />
+                    </span>
+                  )}
+                  {`contains at least one special character (/.,;[}-{=+%%$`}
+                </div>
+              </main>
             </div>
           </div>
-          <div className="progress-bg">
-            {/* validation tracker */}
-            <main className="text-[12px] font-['Lato'] space-y-2">
-              <div className={lengthValidated ? "validated" : "not-validated"}>
-                {lengthValidated.current ? (
-                  <span className="mr-[8px] text-[#0f0]">
-                    <Icon icon={arrows_circle_check} />
-                  </span>
-                ) : (
-                  <span className="mr-[8px]">
-                    <Icon icon={arrows_exclamation} />
-                  </span>
-                )}
-                contains at least 8 characters
-              </div>
-              <div className={lowerValidated ? "validated" : "not-validated"}>
-                {lowerValidated.current ? (
-                  <span className="mr-[14px]">
-                    <Icon icon={arrows_circle_check} className="text-[#0f0]" />
-                  </span>
-                ) : (
-                  <span className="mr-[14px]">
-                    <Icon icon={arrows_exclamation} />
-                  </span>
-                )}
-                contains at least one lowercase letter
-              </div>
-              <div className={upperValidated ? "validated" : "not-validated"}>
-                {upperValidated.current ? (
-                  <span className="mr-[14px] text-[#0f0]">
-                    <Icon icon={arrows_circle_check} />
-                  </span>
-                ) : (
-                  <span className="mr-[14px]">
-                    <Icon icon={arrows_exclamation} />
-                  </span>
-                )}
-                contains at least one uppercase
-              </div>
-              <div className={numberValidated ? "validated" : "not-validated"}>
-                {numberValidated.current ? (
-                  <span className="mr-[8px] text-[#0f0]">
-                    <Icon icon={arrows_circle_check} />
-                  </span>
-                ) : (
-                  <span className="mr-[8px]">
-                    <Icon icon={arrows_exclamation} />
-                  </span>
-                )}
-                contains at least one number
-              </div>
-              <div className={specialValidated ? "validated" : "not-validated"}>
-                {specialValidated.current ? (
-                  <span className="mr-[14px] text-[#0f0]">
-                    <Icon icon={arrows_circle_check} />
-                  </span>
-                ) : (
-                  <span className="mr-[14px]">
-                    <Icon icon={arrows_exclamation} />
-                  </span>
-                )}
-                {`contains at least one special character (/.,;[}-{=+%%$`}
-              </div>
-            </main>
+          <div>
+            <FormInput
+              size="lg"
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={passWordFormik.values.confirmPassword}
+              // placeholder="Enter email address"
+              onChange={passWordFormik.handleChange}
+              errors={passWordFormik.errors.confirmPassword}
+              touched={passWordFormik.touched.confirmPassword}
+              className="w-full"
+              label="Repeat Password"
+            />
           </div>
-        </div>
-        <div>
-          <FormInput
-            size="lg"
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={passWordFormik.values.confirmPassword}
-            // placeholder="Enter email address"
-            onChange={passWordFormik.handleChange}
-            errors={passWordFormik.errors.confirmPassword}
-            touched={passWordFormik.touched.confirmPassword}
-            className="w-full"
-            label="Repeat Password"
-          />
-        </div>
-        <div className="flex items-center justify-center py-10">
-          <Button
-            type="submit"
-            variant="full"
-            size="lg"
-            className="text-[12px]"
-            disabled={isCpLoading || isLoading}
-          >
-            {isLoading ? <Loader /> : "Change Password"}
-          </Button>
-        </div>
-      </form>
+          <div className="flex items-center justify-center py-10">
+            <Button
+              type="submit"
+              variant="full"
+              size="lg"
+              className="text-[12px]"
+              disabled={isCpLoading || isLoading}
+            >
+              {isLoading ? <Loader /> : "Change Password"}
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

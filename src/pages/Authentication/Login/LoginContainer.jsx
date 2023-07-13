@@ -40,8 +40,8 @@ export const LoginContainer = () => {
             password: Yup.string()
               .required("Password is required")
               .matches(
-                /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-                "Weak Password. Password must have at least: 1 upper case, 1 digit, 1 special character, Minimum eight in length"
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[/.,;\[\]\-{}=+%%$]).{8,}$/,
+                "Weak Password. Password must have at least: 1 uppercase, 1 digit, 1 special character. Minimum length: 8"
               ),
           })
         : Yup.object().shape({
@@ -51,8 +51,8 @@ export const LoginContainer = () => {
             password: Yup.string()
               .required("Password is required")
               .matches(
-                /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-                "Weak Password. Password must have at least: 1 upper case, 1 digit, 1 special character, Minimum eight in length"
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[/.,;\[\]\-{}=+%%$]).{8,}$/,
+                "Weak Password. Password must have at least: 1 uppercase, 1 digit, 1 special character. Minimum length: 8"
               ),
           }),
     onSubmit: (details) => {
