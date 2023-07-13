@@ -33,6 +33,7 @@ const ProfileView = ({
                 : ""
             }
             optional={user?.emailVerificationStatus ? "Email is verified" : ""}
+            disabled={user?.email}
           />
         </div>
         <div>

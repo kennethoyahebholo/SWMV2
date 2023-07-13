@@ -74,7 +74,7 @@ export const WasteDisposalContainer = () => {
   const binRequestOption = [
     {
       value: "",
-      title: "Do You Want a Bin",
+      title: "Do You Want To Buy A Waste Bin",
     },
     {
       value: "0",
@@ -97,7 +97,7 @@ export const WasteDisposalContainer = () => {
     },
     {
       value: "3",
-      title: "Lagos",
+      title: "Lagos Island",
     },
     {
       value: "4",

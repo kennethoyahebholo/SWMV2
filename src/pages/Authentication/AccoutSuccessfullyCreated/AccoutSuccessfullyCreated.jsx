@@ -22,7 +22,7 @@ export const AccoutSuccessfullyCreated = () => {
         <div className="flex items-center justify-center pt-[74px]">
           <Link to={LOGIN}>
             <Button variant="full" size="lg" className="text-[12px] h-[52px]">
-              Go Login
+              Go To Login
             </Button>
           </Link>
         </div>

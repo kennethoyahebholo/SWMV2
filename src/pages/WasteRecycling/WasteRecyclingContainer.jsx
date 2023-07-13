@@ -145,7 +145,7 @@ export const WasteRecyclingContainer = () => {
   const binRequestOption = [
     {
       value: "",
-      title: "Do You Want a Bin",
+      title: "Do You Want To Buy A Recycle Bin",
     },
     {
       value: "false",

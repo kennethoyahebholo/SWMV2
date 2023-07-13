@@ -60,6 +60,22 @@ const WasteRecycling = ({
             />
           </div>
         )}
+        <div>
+          <FormSelect
+            size="lg"
+            type="text"
+            options={categoryOption}
+            id="category"
+            name="category"
+            placeholder="Select Category"
+            value={formik.values.category}
+            touched={formik.touched.category}
+            onChange={formik.handleChange}
+            errors={formik.errors.category}
+            className="w-full "
+            label="Select Category"
+          />
+        </div>
         <div className="mb-8">
           <FormSelect
             size="lg"
@@ -72,7 +88,7 @@ const WasteRecycling = ({
             onChange={formik.handleChange}
             errors={formik.errors.binOrBag}
             className="w-full "
-            label="Bin Or Bag Request"
+            label="Recycle Bin Or Recycle Bag"
           />
         </div>
         {formik?.values?.binOrBag && (
@@ -91,22 +107,6 @@ const WasteRecycling = ({
             />
           </div>
         )}
-        <div>
-          <FormSelect
-            size="lg"
-            type="text"
-            options={categoryOption}
-            id="category"
-            name="category"
-            placeholder="Select Category"
-            value={formik.values.category}
-            touched={formik.touched.category}
-            onChange={formik.handleChange}
-            errors={formik.errors.category}
-            className="w-full "
-            label="Select Category"
-          />
-        </div>
         <div>
           <FormSelect
             size="lg"
