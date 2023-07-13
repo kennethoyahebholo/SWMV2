@@ -28,7 +28,9 @@ const ProfileView = ({
             handleVerifyEmail={handleVerifyEmail}
             label="Email"
             required={
-              !user?.emailVerificationStatus ? `Email is not verified` : ""
+              user && !user?.emailVerificationStatus
+                ? `Email is not verified`
+                : ""
             }
             optional={user?.emailVerificationStatus ? "Email is verified" : ""}
           />
