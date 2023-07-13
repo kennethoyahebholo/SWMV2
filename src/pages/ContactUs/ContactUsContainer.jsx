@@ -34,7 +34,7 @@ export const ContactUsContainer = () => {
       setIsLoading(true);
 
       setTimeout(() => {
-        resetForm();
+        resetForm({ details: "" });
         setIsLoading(false);
         setOpenModal(true);
       }, 5000);
