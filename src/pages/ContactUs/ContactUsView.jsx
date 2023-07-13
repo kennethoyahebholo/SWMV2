@@ -116,7 +116,7 @@ const ContactUsView = ({
       </form>
       {openModal && (
         <Modal
-          content={<ContactUsModal />}
+          content={<ContactUsModal setOpenModal={setOpenModal} />}
           setOpenModal={() => setOpenModal(false)}
         />
       )}
